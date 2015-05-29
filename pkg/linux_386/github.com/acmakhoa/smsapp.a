@@ -1,0 +1,334 @@
+!<arch>
+__.PKGDEF       0           0     0     644     51753     `
+go object linux 386 go1.3 X:precisestack
+
+$$
+package boltdb
+	import log "log"
+	import runtime "runtime"
+	import bolt "github.com/boltdb/bolt"
+	import time "time" // indirect
+	type @"time".Duration int64
+	func (@"time".d·2 @"time".Duration) Hours () (? float64) { var @"time".hour·3 @"time".Duration; ; @"time".hour·3 = @"time".d·2 / @"time".Duration(0x34630B8A000); var @"time".nsec·4 @"time".Duration; ; @"time".nsec·4 = @"time".d·2 % @"time".Duration(0x34630B8A000); return float64(@"time".hour·3) + float64(@"time".nsec·4) * 0x9C5FFF26ED75Fp-93 }
+	func (@"time".d·2 @"time".Duration) Minutes () (? float64) { var @"time".min·3 @"time".Duration; ; @"time".min·3 = @"time".d·2 / @"time".Duration(0xDF8475800); var @"time".nsec·4 @"time".Duration; ; @"time".nsec·4 = @"time".d·2 % @"time".Duration(0xDF8475800); return float64(@"time".min·3) + float64(@"time".nsec·4) * 0x9299FF347E9E9p-87 }
+	func (@"time".d·2 @"time".Duration) Nanoseconds () (? int64) { return int64(@"time".d·2) }
+	func (@"time".d·2 @"time".Duration) Seconds () (? float64) { var @"time".sec·3 @"time".Duration; ; @"time".sec·3 = @"time".d·2 / @"time".Duration(0x3B9ACA00); var @"time".nsec·4 @"time".Duration; ; @"time".nsec·4 = @"time".d·2 % @"time".Duration(0x3B9ACA00); return float64(@"time".sec·3) + float64(@"time".nsec·4) * 0x112E0BE826D695p-82 }
+	func (@"time".d·2 @"time".Duration) String () (? string)
+	import os "os" // indirect
+	type @"os".dirInfo struct { @"os".buf []byte; @"os".nbuf int; @"os".bufp int }
+	type @"os".file struct { @"os".fd int; @"os".name string; @"os".dirinfo *@"os".dirInfo; @"os".nepipe int32 }
+	func (@"os".file·2 *@"os".file) @"os".close () (? error)
+	type @"os".FileMode uint32
+	func (@"os".m·2 @"os".FileMode) IsDir () (? bool) { return @"os".m·2 & @"os".FileMode(0x80000000) != @"os".FileMode(0x0) }
+	func (@"os".m·2 @"os".FileMode) IsRegular () (? bool) { return @"os".m·2 & @"os".FileMode(0x8F000000) == @"os".FileMode(0x0) }
+	func (@"os".m·2 @"os".FileMode) Perm () (? @"os".FileMode) { return @"os".m·2 & @"os".FileMode(0x1FF) }
+	func (@"os".m·2 @"os".FileMode) String () (? string)
+	type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
+	type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
+	type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
+	func (@"time".l·2 *@"time".Location "esc:0x0") String () (? string)
+	func (@"time".l·2 *@"time".Location "esc:0x0") @"time".firstZoneUsed () (? bool)
+	func (@"time".l·2 *@"time".Location "esc:0x2") @"time".get () (? *@"time".Location)
+	func (@"time".l·6 *@"time".Location "esc:0x1") @"time".lookup (@"time".sec·7 int64) (@"time".name·1 string, @"time".offset·2 int, @"time".isDST·3 bool, @"time".start·4 int64, @"time".end·5 int64)
+	func (@"time".l·2 *@"time".Location "esc:0x0") @"time".lookupFirstZone () (? int)
+	func (@"time".l·4 *@"time".Location "esc:0x0") @"time".lookupName (@"time".name·5 string "esc:0x0", @"time".unix·6 int64) (@"time".offset·1 int, @"time".isDST·2 bool, @"time".ok·3 bool)
+	type @"time".Month int
+	func (@"time".m·2 @"time".Month) String () (? string) { return @"time".months[@"time".m·2 - @"time".Month(0x1)] }
+	type @"time".Weekday int
+	func (@"time".d·2 @"time".Weekday) String () (? string) { return @"time".days[@"time".d·2] }
+	type @"time".Time struct { @"time".sec int64; @"time".nsec uintptr; @"time".loc *@"time".Location }
+	func (@"time".t·2 @"time".Time "esc:0x2") Add (@"time".d·3 @"time".Duration) (? @"time".Time)
+	func (@"time".t·2 @"time".Time "esc:0x2") AddDate (@"time".years·3 int, @"time".months·4 int, @"time".days·5 int) (? @"time".Time)
+	func (@"time".t·2 @"time".Time "esc:0x0") After (@"time".u·3 @"time".Time "esc:0x0") (? bool) { return @"time".t·2.@"time".sec > @"time".u·3.@"time".sec || @"time".t·2.@"time".sec == @"time".u·3.@"time".sec && @"time".t·2.@"time".nsec > @"time".u·3.@"time".nsec }
+	func (@"time".t·2 @"time".Time "esc:0x0") Before (@"time".u·3 @"time".Time "esc:0x0") (? bool) { return @"time".t·2.@"time".sec < @"time".u·3.@"time".sec || @"time".t·2.@"time".sec == @"time".u·3.@"time".sec && @"time".t·2.@"time".nsec < @"time".u·3.@"time".nsec }
+	func (@"time".t·4 @"time".Time "esc:0x0") Clock () (@"time".hour·1 int, @"time".min·2 int, @"time".sec·3 int)
+	func (@"time".t·4 @"time".Time "esc:0x0") Date () (@"time".year·1 int, @"time".month·2 @"time".Month, @"time".day·3 int)
+	func (@"time".t·2 @"time".Time "esc:0x0") Day () (? int)
+	func (@"time".t·2 @"time".Time "esc:0x0") Equal (@"time".u·3 @"time".Time "esc:0x0") (? bool) { return @"time".t·2.@"time".sec == @"time".u·3.@"time".sec && @"time".t·2.@"time".nsec == @"time".u·3.@"time".nsec }
+	func (@"time".t·2 @"time".Time "esc:0x0") Format (@"time".layout·3 string "esc:0x0") (? string)
+	func (@"time".t·2 *@"time".Time "esc:0x0") GobDecode (@"time".data·3 []byte "esc:0x0") (? error)
+	func (@"time".t·3 @"time".Time "esc:0x0") GobEncode () (? []byte, ? error)
+	func (@"time".t·2 @"time".Time "esc:0x0") Hour () (? int)
+	func (@"time".t·3 @"time".Time "esc:0x0") ISOWeek () (@"time".year·1 int, @"time".week·2 int)
+	func (@"time".t·2 @"time".Time "esc:0x2") In (@"time".loc·3 *@"time".Location "esc:0x2") (? @"time".Time)
+	func (@"time".t·2 @"time".Time "esc:0x0") IsZero () (? bool) { return @"time".t·2.@"time".sec == 0x0 && @"time".t·2.@"time".nsec == 0x0 }
+	func (@"time".t·2 @"time".Time "esc:0x2") Local () (? @"time".Time) { @"time".t·2.@"time".loc = @"time".Local; return @"time".t·2 }
+	func (@"time".t·2 @"time".Time "esc:0x2") Location () (? *@"time".Location) { var @"time".l·3 *@"time".Location; ; @"time".l·3 = @"time".t·2.@"time".loc; if @"time".l·3 == nil { @"time".l·3 = @"time".UTC }; return @"time".l·3 }
+	func (@"time".t·3 @"time".Time "esc:0x0") MarshalBinary () (? []byte, ? error)
+	func (@"time".t·3 @"time".Time "esc:0x0") MarshalJSON () (? []byte, ? error)
+	func (@"time".t·3 @"time".Time "esc:0x0") MarshalText () (? []byte, ? error)
+	func (@"time".t·2 @"time".Time "esc:0x0") Minute () (? int)
+	func (@"time".t·2 @"time".Time "esc:0x0") Month () (? @"time".Month)
+	func (@"time".t·2 @"time".Time "esc:0x0") Nanosecond () (? int) { return int(@"time".t·2.@"time".nsec) }
+	func (@"time".t·2 @"time".Time "esc:0x2") Round (@"time".d·3 @"time".Duration) (? @"time".Time)
+	func (@"time".t·2 @"time".Time "esc:0x0") Second () (? int)
+	func (@"time".t·2 @"time".Time "esc:0x0") String () (? string)
+	func (@"time".t·2 @"time".Time "esc:0x0") Sub (@"time".u·3 @"time".Time "esc:0x0") (? @"time".Duration)
+	func (@"time".t·2 @"time".Time "esc:0x2") Truncate (@"time".d·3 @"time".Duration) (? @"time".Time)
+	func (@"time".t·2 @"time".Time "esc:0x2") UTC () (? @"time".Time) { @"time".t·2.@"time".loc = @"time".UTC; return @"time".t·2 }
+	func (@"time".t·2 @"time".Time "esc:0x0") Unix () (? int64) { return @"time".t·2.@"time".sec + -0xE7791F700 }
+	func (@"time".t·2 @"time".Time "esc:0x0") UnixNano () (? int64) { return (@"time".t·2.@"time".sec + -0xE7791F700) * 0x3B9ACA00 + int64(@"time".t·2.@"time".nsec) }
+	func (@"time".t·2 *@"time".Time "esc:0x0") UnmarshalBinary (@"time".data·3 []byte "esc:0x0") (? error)
+	func (@"time".t·2 *@"time".Time "esc:0x0") UnmarshalJSON (@"time".data·3 []byte "esc:0x0") (@"time".err·1 error)
+	func (@"time".t·2 *@"time".Time "esc:0x0") UnmarshalText (@"time".data·3 []byte "esc:0x0") (@"time".err·1 error)
+	func (@"time".t·2 @"time".Time "esc:0x0") Weekday () (? @"time".Weekday)
+	func (@"time".t·2 @"time".Time "esc:0x0") Year () (? int)
+	func (@"time".t·2 @"time".Time "esc:0x0") YearDay () (? int)
+	func (@"time".t·3 @"time".Time "esc:0x0") Zone () (@"time".name·1 string, @"time".offset·2 int)
+	func (@"time".t·2 @"time".Time "esc:0x0") @"time".abs () (? uint64)
+	func (@"time".t·5 @"time".Time "esc:0x0") @"time".date (@"time".full·6 bool) (@"time".year·1 int, @"time".month·2 @"time".Month, @"time".day·3 int, @"time".yday·4 int)
+	func (@"time".t·4 @"time".Time "esc:0x1") @"time".locabs () (@"time".name·1 string, @"time".offset·2 int, @"time".abs·3 uint64)
+	type @"os".FileInfo interface { IsDir() (? bool); ModTime() (? @"time".Time); Mode() (? @"os".FileMode); Name() (? string); Size() (? int64); Sys() (? interface {}) }
+	type @"os".File struct { @"os".? *@"os".file }
+	func (@"os".f·2 *@"os".File) Chdir () (? error)
+	func (@"os".f·2 *@"os".File) Chmod (@"os".mode·3 @"os".FileMode) (? error)
+	func (@"os".f·2 *@"os".File) Chown (@"os".uid·3 int, @"os".gid·4 int) (? error)
+	func (@"os".f·2 *@"os".File) Close () (? error)
+	func (@"os".f·2 *@"os".File "esc:0x0") Fd () (? uintptr) { if @"os".f·2 == nil { return 0xFFFFFFFF }; return uintptr(@"os".f·2.@"os".file.@"os".fd) }
+	func (@"os".f·2 *@"os".File "esc:0x1") Name () (? string) { return @"os".f·2.@"os".file.@"os".name }
+	func (@"os".f·3 *@"os".File) Read (@"os".b·4 []byte "esc:0x0") (@"os".n·1 int, @"os".err·2 error)
+	func (@"os".f·3 *@"os".File) ReadAt (@"os".b·4 []byte "esc:0x0", @"os".off·5 int64) (@"os".n·1 int, @"os".err·2 error)
+	func (@"os".f·3 *@"os".File "esc:0x0") Readdir (@"os".n·4 int) (@"os".fi·1 []@"os".FileInfo, @"os".err·2 error)
+	func (@"os".f·3 *@"os".File "esc:0x0") Readdirnames (@"os".n·4 int) (@"os".names·1 []string, @"os".err·2 error)
+	func (@"os".f·3 *@"os".File) Seek (@"os".offset·4 int64, @"os".whence·5 int) (@"os".ret·1 int64, @"os".err·2 error)
+	func (@"os".f·3 *@"os".File) Stat () (@"os".fi·1 @"os".FileInfo, @"os".err·2 error)
+	func (@"os".f·2 *@"os".File "esc:0x0") Sync () (@"os".err·1 error)
+	func (@"os".f·2 *@"os".File) Truncate (@"os".size·3 int64) (? error)
+	func (@"os".f·3 *@"os".File) Write (@"os".b·4 []byte "esc:0x0") (@"os".n·1 int, @"os".err·2 error)
+	func (@"os".f·3 *@"os".File) WriteAt (@"os".b·4 []byte "esc:0x0", @"os".off·5 int64) (@"os".n·1 int, @"os".err·2 error)
+	func (@"os".f·3 *@"os".File) WriteString (@"os".s·4 string "esc:0x0") (@"os".ret·1 int, @"os".err·2 error)
+	func (@"os".f·3 *@"os".File "esc:0x0") @"os".pread (@"os".b·4 []byte "esc:0x0", @"os".off·5 int64) (@"os".n·1 int, @"os".err·2 error)
+	func (@"os".f·3 *@"os".File "esc:0x0") @"os".pwrite (@"os".b·4 []byte "esc:0x0", @"os".off·5 int64) (@"os".n·1 int, @"os".err·2 error)
+	func (@"os".f·3 *@"os".File "esc:0x0") @"os".read (@"os".b·4 []byte "esc:0x0") (@"os".n·1 int, @"os".err·2 error)
+	func (@"os".f·3 *@"os".File "esc:0x0") @"os".readdir (@"os".n·4 int) (@"os".fi·1 []@"os".FileInfo, @"os".err·2 error)
+	func (@"os".f·3 *@"os".File "esc:0x0") @"os".readdirnames (@"os".n·4 int) (@"os".names·1 []string, @"os".err·2 error)
+	func (@"os".f·3 *@"os".File "esc:0x0") @"os".seek (@"os".offset·4 int64, @"os".whence·5 int) (@"os".ret·1 int64, @"os".err·2 error)
+	func (@"os".f·3 *@"os".File "esc:0x0") @"os".write (@"os".b·4 []byte "esc:0x0") (@"os".n·1 int, @"os".err·2 error)
+	type @"github.com/boltdb/bolt".pgid uint64
+	type @"github.com/boltdb/bolt".bucket struct { @"github.com/boltdb/bolt".root @"github.com/boltdb/bolt".pgid; @"github.com/boltdb/bolt".sequence uint64 }
+	type @"github.com/boltdb/bolt".txid uint64
+	type @"github.com/boltdb/bolt".branchPageElement struct { @"github.com/boltdb/bolt".pos uint32; @"github.com/boltdb/bolt".ksize uint32; @"github.com/boltdb/bolt".pgid @"github.com/boltdb/bolt".pgid }
+	func (@"github.com/boltdb/bolt".n·2 *@"github.com/boltdb/bolt".branchPageElement "esc:0x2") @"github.com/boltdb/bolt".key () (? []byte) { var @"github.com/boltdb/bolt".buf·3 *[268435455]byte; ; @"github.com/boltdb/bolt".buf·3 = (*[268435455]byte)(@"unsafe".Pointer(@"github.com/boltdb/bolt".n·2)); return @"github.com/boltdb/bolt".buf·3[@"github.com/boltdb/bolt".n·2.@"github.com/boltdb/bolt".pos:@"github.com/boltdb/bolt".n·2.@"github.com/boltdb/bolt".pos + @"github.com/boltdb/bolt".n·2.@"github.com/boltdb/bolt".ksize] }
+	type @"github.com/boltdb/bolt".leafPageElement struct { @"github.com/boltdb/bolt".flags uint32; @"github.com/boltdb/bolt".pos uint32; @"github.com/boltdb/bolt".ksize uint32; @"github.com/boltdb/bolt".vsize uint32 }
+	func (@"github.com/boltdb/bolt".n·2 *@"github.com/boltdb/bolt".leafPageElement "esc:0x2") @"github.com/boltdb/bolt".key () (? []byte) { var @"github.com/boltdb/bolt".buf·3 *[268435455]byte; ; @"github.com/boltdb/bolt".buf·3 = (*[268435455]byte)(@"unsafe".Pointer(@"github.com/boltdb/bolt".n·2)); return @"github.com/boltdb/bolt".buf·3[@"github.com/boltdb/bolt".n·2.@"github.com/boltdb/bolt".pos:@"github.com/boltdb/bolt".n·2.@"github.com/boltdb/bolt".pos + @"github.com/boltdb/bolt".n·2.@"github.com/boltdb/bolt".ksize] }
+	func (@"github.com/boltdb/bolt".n·2 *@"github.com/boltdb/bolt".leafPageElement "esc:0x2") @"github.com/boltdb/bolt".value () (? []byte) { var @"github.com/boltdb/bolt".buf·3 *[268435455]byte; ; @"github.com/boltdb/bolt".buf·3 = (*[268435455]byte)(@"unsafe".Pointer(@"github.com/boltdb/bolt".n·2)); return @"github.com/boltdb/bolt".buf·3[@"github.com/boltdb/bolt".n·2.@"github.com/boltdb/bolt".pos + @"github.com/boltdb/bolt".n·2.@"github.com/boltdb/bolt".ksize:@"github.com/boltdb/bolt".n·2.@"github.com/boltdb/bolt".pos + @"github.com/boltdb/bolt".n·2.@"github.com/boltdb/bolt".ksize + @"github.com/boltdb/bolt".n·2.@"github.com/boltdb/bolt".vsize] }
+	type @"github.com/boltdb/bolt".page struct { @"github.com/boltdb/bolt".id @"github.com/boltdb/bolt".pgid; @"github.com/boltdb/bolt".flags uint16; @"github.com/boltdb/bolt".count uint16; @"github.com/boltdb/bolt".overflow uint32; @"github.com/boltdb/bolt".ptr uintptr }
+	func (@"github.com/boltdb/bolt".p·2 *@"github.com/boltdb/bolt".page "esc:0x2") @"github.com/boltdb/bolt".branchPageElement (@"github.com/boltdb/bolt".index·3 uint16) (? *@"github.com/boltdb/bolt".branchPageElement) { return &(*[134217727]@"github.com/boltdb/bolt".branchPageElement)(@"unsafe".Pointer(&@"github.com/boltdb/bolt".p·2.@"github.com/boltdb/bolt".ptr))[@"github.com/boltdb/bolt".index·3] }
+	func (@"github.com/boltdb/bolt".p·2 *@"github.com/boltdb/bolt".page "esc:0x2") @"github.com/boltdb/bolt".branchPageElements () (? []@"github.com/boltdb/bolt".branchPageElement) { return (*[134217727]@"github.com/boltdb/bolt".branchPageElement)(@"unsafe".Pointer(&@"github.com/boltdb/bolt".p·2.@"github.com/boltdb/bolt".ptr))[:] }
+	func (@"github.com/boltdb/bolt".p·1 *@"github.com/boltdb/bolt".page) @"github.com/boltdb/bolt".hexdump (@"github.com/boltdb/bolt".n·2 int)
+	func (@"github.com/boltdb/bolt".p·2 *@"github.com/boltdb/bolt".page "esc:0x2") @"github.com/boltdb/bolt".leafPageElement (@"github.com/boltdb/bolt".index·3 uint16) (? *@"github.com/boltdb/bolt".leafPageElement) { var @"github.com/boltdb/bolt".n·4 *@"github.com/boltdb/bolt".leafPageElement; ; @"github.com/boltdb/bolt".n·4 = &(*[134217727]@"github.com/boltdb/bolt".leafPageElement)(@"unsafe".Pointer(&@"github.com/boltdb/bolt".p·2.@"github.com/boltdb/bolt".ptr))[@"github.com/boltdb/bolt".index·3]; return @"github.com/boltdb/bolt".n·4 }
+	func (@"github.com/boltdb/bolt".p·2 *@"github.com/boltdb/bolt".page "esc:0x2") @"github.com/boltdb/bolt".leafPageElements () (? []@"github.com/boltdb/bolt".leafPageElement) { return (*[134217727]@"github.com/boltdb/bolt".leafPageElement)(@"unsafe".Pointer(&@"github.com/boltdb/bolt".p·2.@"github.com/boltdb/bolt".ptr))[:] }
+	func (@"github.com/boltdb/bolt".p·2 *@"github.com/boltdb/bolt".page "esc:0x2") @"github.com/boltdb/bolt".meta () (? *@"github.com/boltdb/bolt".meta) { return (*@"github.com/boltdb/bolt".meta)(@"unsafe".Pointer(&@"github.com/boltdb/bolt".p·2.@"github.com/boltdb/bolt".ptr)) }
+	func (@"github.com/boltdb/bolt".p·2 *@"github.com/boltdb/bolt".page "esc:0x0") @"github.com/boltdb/bolt".typ () (? string)
+	type @"github.com/boltdb/bolt".meta struct { @"github.com/boltdb/bolt".magic uint32; @"github.com/boltdb/bolt".version uint32; @"github.com/boltdb/bolt".pageSize uint32; @"github.com/boltdb/bolt".flags uint32; @"github.com/boltdb/bolt".root @"github.com/boltdb/bolt".bucket; @"github.com/boltdb/bolt".freelist @"github.com/boltdb/bolt".pgid; @"github.com/boltdb/bolt".pgid @"github.com/boltdb/bolt".pgid; @"github.com/boltdb/bolt".txid @"github.com/boltdb/bolt".txid; @"github.com/boltdb/bolt".checksum uint64 }
+	func (@"github.com/boltdb/bolt".m·1 *@"github.com/boltdb/bolt".meta "esc:0x0") @"github.com/boltdb/bolt".copy (@"github.com/boltdb/bolt".dest·2 *@"github.com/boltdb/bolt".meta "esc:0x0") { *@"github.com/boltdb/bolt".dest·2 = *@"github.com/boltdb/bolt".m·1 }
+	func (@"github.com/boltdb/bolt".m·2 *@"github.com/boltdb/bolt".meta) @"github.com/boltdb/bolt".sum64 () (? uint64)
+	func (@"github.com/boltdb/bolt".m·2 *@"github.com/boltdb/bolt".meta) @"github.com/boltdb/bolt".validate () (? error)
+	func (@"github.com/boltdb/bolt".m·1 *@"github.com/boltdb/bolt".meta) @"github.com/boltdb/bolt".write (@"github.com/boltdb/bolt".p·2 *@"github.com/boltdb/bolt".page "esc:0x0")
+	type @"github.com/boltdb/bolt".nodes []*@"github.com/boltdb/bolt".node
+	func (@"github.com/boltdb/bolt".s·2 @"github.com/boltdb/bolt".nodes "esc:0x0") Len () (? int) { return len(@"github.com/boltdb/bolt".s·2) }
+	func (@"github.com/boltdb/bolt".s·2 @"github.com/boltdb/bolt".nodes "esc:0x0") Less (@"github.com/boltdb/bolt".i·3 int, @"github.com/boltdb/bolt".j·4 int) (? bool)
+	func (@"github.com/boltdb/bolt".s·1 @"github.com/boltdb/bolt".nodes "esc:0x0") Swap (@"github.com/boltdb/bolt".i·2 int, @"github.com/boltdb/bolt".j·3 int) { @"github.com/boltdb/bolt".s·1[@"github.com/boltdb/bolt".i·2], @"github.com/boltdb/bolt".s·1[@"github.com/boltdb/bolt".j·3] = @"github.com/boltdb/bolt".s·1[@"github.com/boltdb/bolt".j·3], @"github.com/boltdb/bolt".s·1[@"github.com/boltdb/bolt".i·2] }
+	type @"github.com/boltdb/bolt".inode struct { @"github.com/boltdb/bolt".flags uint32; @"github.com/boltdb/bolt".pgid @"github.com/boltdb/bolt".pgid; @"github.com/boltdb/bolt".key []byte; @"github.com/boltdb/bolt".value []byte }
+	type @"github.com/boltdb/bolt".inodes []@"github.com/boltdb/bolt".inode
+	type @"github.com/boltdb/bolt".node struct { @"github.com/boltdb/bolt".bucket *@"github.com/boltdb/bolt".Bucket; @"github.com/boltdb/bolt".isLeaf bool; @"github.com/boltdb/bolt".unbalanced bool; @"github.com/boltdb/bolt".spilled bool; @"github.com/boltdb/bolt".key []byte; @"github.com/boltdb/bolt".pgid @"github.com/boltdb/bolt".pgid; @"github.com/boltdb/bolt".parent *@"github.com/boltdb/bolt".node; @"github.com/boltdb/bolt".children @"github.com/boltdb/bolt".nodes; @"github.com/boltdb/bolt".inodes @"github.com/boltdb/bolt".inodes }
+	func (@"github.com/boltdb/bolt".n·2 *@"github.com/boltdb/bolt".node) @"github.com/boltdb/bolt".childAt (@"github.com/boltdb/bolt".index·3 int) (? *@"github.com/boltdb/bolt".node)
+	func (@"github.com/boltdb/bolt".n·2 *@"github.com/boltdb/bolt".node "esc:0x0") @"github.com/boltdb/bolt".childIndex (@"github.com/boltdb/bolt".child·3 *@"github.com/boltdb/bolt".node "esc:0x0") (? int)
+	func (@"github.com/boltdb/bolt".n·1 *@"github.com/boltdb/bolt".node) @"github.com/boltdb/bolt".del (@"github.com/boltdb/bolt".key·2 []byte "esc:0x0")
+	func (@"github.com/boltdb/bolt".n·1 *@"github.com/boltdb/bolt".node "esc:0x0") @"github.com/boltdb/bolt".dereference ()
+	func (@"github.com/boltdb/bolt".n·1 *@"github.com/boltdb/bolt".node "esc:0x0") @"github.com/boltdb/bolt".free ()
+	func (@"github.com/boltdb/bolt".n·2 *@"github.com/boltdb/bolt".node "esc:0x0") @"github.com/boltdb/bolt".minKeys () (? int) { if @"github.com/boltdb/bolt".n·2.@"github.com/boltdb/bolt".isLeaf { return 0x1 }; return 0x2 }
+	func (@"github.com/boltdb/bolt".n·2 *@"github.com/boltdb/bolt".node) @"github.com/boltdb/bolt".nextSibling () (? *@"github.com/boltdb/bolt".node)
+	func (@"github.com/boltdb/bolt".n·2 *@"github.com/boltdb/bolt".node "esc:0x0") @"github.com/boltdb/bolt".numChildren () (? int) { return len(@"github.com/boltdb/bolt".n·2.@"github.com/boltdb/bolt".inodes) }
+	func (@"github.com/boltdb/bolt".n·2 *@"github.com/boltdb/bolt".node "esc:0x0") @"github.com/boltdb/bolt".pageElementSize () (? int) { if @"github.com/boltdb/bolt".n·2.@"github.com/boltdb/bolt".isLeaf { return 0x10 }; return 0x10 }
+	func (@"github.com/boltdb/bolt".n·2 *@"github.com/boltdb/bolt".node) @"github.com/boltdb/bolt".prevSibling () (? *@"github.com/boltdb/bolt".node)
+	func (@"github.com/boltdb/bolt".n·1 *@"github.com/boltdb/bolt".node) @"github.com/boltdb/bolt".put (@"github.com/boltdb/bolt".oldKey·2 []byte "esc:0x0", @"github.com/boltdb/bolt".newKey·3 []byte, @"github.com/boltdb/bolt".value·4 []byte, @"github.com/boltdb/bolt".pgid·5 @"github.com/boltdb/bolt".pgid, @"github.com/boltdb/bolt".flags·6 uint32)
+	func (@"github.com/boltdb/bolt".n·1 *@"github.com/boltdb/bolt".node "esc:0x0") @"github.com/boltdb/bolt".read (@"github.com/boltdb/bolt".p·2 *@"github.com/boltdb/bolt".page)
+	func (@"github.com/boltdb/bolt".n·1 *@"github.com/boltdb/bolt".node) @"github.com/boltdb/bolt".rebalance ()
+	func (@"github.com/boltdb/bolt".n·1 *@"github.com/boltdb/bolt".node) @"github.com/boltdb/bolt".removeChild (@"github.com/boltdb/bolt".target·2 *@"github.com/boltdb/bolt".node "esc:0x0")
+	func (@"github.com/boltdb/bolt".n·2 *@"github.com/boltdb/bolt".node) @"github.com/boltdb/bolt".root () (? *@"github.com/boltdb/bolt".node)
+	func (@"github.com/boltdb/bolt".n·2 *@"github.com/boltdb/bolt".node "esc:0x0") @"github.com/boltdb/bolt".size () (? int)
+	func (@"github.com/boltdb/bolt".n·2 *@"github.com/boltdb/bolt".node "esc:0x0") @"github.com/boltdb/bolt".sizeLessThan (@"github.com/boltdb/bolt".v·3 int) (? bool)
+	func (@"github.com/boltdb/bolt".n·2 *@"github.com/boltdb/bolt".node) @"github.com/boltdb/bolt".spill () (? error)
+	func (@"github.com/boltdb/bolt".n·2 *@"github.com/boltdb/bolt".node) @"github.com/boltdb/bolt".split (@"github.com/boltdb/bolt".pageSize·3 int) (? []*@"github.com/boltdb/bolt".node)
+	func (@"github.com/boltdb/bolt".n·3 *@"github.com/boltdb/bolt".node "esc:0x0") @"github.com/boltdb/bolt".splitIndex (@"github.com/boltdb/bolt".threshold·4 int) (@"github.com/boltdb/bolt".index·1 int, @"github.com/boltdb/bolt".sz·2 int)
+	func (@"github.com/boltdb/bolt".n·3 *@"github.com/boltdb/bolt".node) @"github.com/boltdb/bolt".splitTwo (@"github.com/boltdb/bolt".pageSize·4 int) (? *@"github.com/boltdb/bolt".node, ? *@"github.com/boltdb/bolt".node)
+	func (@"github.com/boltdb/bolt".n·1 *@"github.com/boltdb/bolt".node "esc:0x0") @"github.com/boltdb/bolt".write (@"github.com/boltdb/bolt".p·2 *@"github.com/boltdb/bolt".page)
+	type @"github.com/boltdb/bolt".elemRef struct { @"github.com/boltdb/bolt".page *@"github.com/boltdb/bolt".page; @"github.com/boltdb/bolt".node *@"github.com/boltdb/bolt".node; @"github.com/boltdb/bolt".index int }
+	func (@"github.com/boltdb/bolt".r·2 *@"github.com/boltdb/bolt".elemRef "esc:0x0") @"github.com/boltdb/bolt".count () (? int) { if @"github.com/boltdb/bolt".r·2.@"github.com/boltdb/bolt".node != nil { return len(@"github.com/boltdb/bolt".r·2.@"github.com/boltdb/bolt".node.@"github.com/boltdb/bolt".inodes) }; return int(@"github.com/boltdb/bolt".r·2.@"github.com/boltdb/bolt".page.@"github.com/boltdb/bolt".count) }
+	func (@"github.com/boltdb/bolt".r·2 *@"github.com/boltdb/bolt".elemRef "esc:0x0") @"github.com/boltdb/bolt".isLeaf () (? bool) { if @"github.com/boltdb/bolt".r·2.@"github.com/boltdb/bolt".node != nil { return @"github.com/boltdb/bolt".r·2.@"github.com/boltdb/bolt".node.@"github.com/boltdb/bolt".isLeaf }; return @"github.com/boltdb/bolt".r·2.@"github.com/boltdb/bolt".page.@"github.com/boltdb/bolt".flags & 0x2 != 0x0 }
+	type @"github.com/boltdb/bolt".Cursor struct { @"github.com/boltdb/bolt".bucket *@"github.com/boltdb/bolt".Bucket; @"github.com/boltdb/bolt".stack []@"github.com/boltdb/bolt".elemRef }
+	func (@"github.com/boltdb/bolt".c·2 *@"github.com/boltdb/bolt".Cursor "esc:0x1") Bucket () (? *@"github.com/boltdb/bolt".Bucket) { return @"github.com/boltdb/bolt".c·2.@"github.com/boltdb/bolt".bucket }
+	func (@"github.com/boltdb/bolt".c·2 *@"github.com/boltdb/bolt".Cursor) Delete () (? error)
+	func (@"github.com/boltdb/bolt".c·3 *@"github.com/boltdb/bolt".Cursor) First () (@"github.com/boltdb/bolt".key·1 []byte, @"github.com/boltdb/bolt".value·2 []byte)
+	func (@"github.com/boltdb/bolt".c·3 *@"github.com/boltdb/bolt".Cursor) Last () (@"github.com/boltdb/bolt".key·1 []byte, @"github.com/boltdb/bolt".value·2 []byte)
+	func (@"github.com/boltdb/bolt".c·3 *@"github.com/boltdb/bolt".Cursor) Next () (@"github.com/boltdb/bolt".key·1 []byte, @"github.com/boltdb/bolt".value·2 []byte)
+	func (@"github.com/boltdb/bolt".c·3 *@"github.com/boltdb/bolt".Cursor) Prev () (@"github.com/boltdb/bolt".key·1 []byte, @"github.com/boltdb/bolt".value·2 []byte)
+	func (@"github.com/boltdb/bolt".c·3 *@"github.com/boltdb/bolt".Cursor) Seek (@"github.com/boltdb/bolt".seek·4 []byte "esc:0x0") (@"github.com/boltdb/bolt".key·1 []byte, @"github.com/boltdb/bolt".value·2 []byte)
+	func (@"github.com/boltdb/bolt".c·1 *@"github.com/boltdb/bolt".Cursor) @"github.com/boltdb/bolt".first ()
+	func (@"github.com/boltdb/bolt".c·4 *@"github.com/boltdb/bolt".Cursor "esc:0x1") @"github.com/boltdb/bolt".keyValue () (? []byte, ? []byte, ? uint32)
+	func (@"github.com/boltdb/bolt".c·1 *@"github.com/boltdb/bolt".Cursor) @"github.com/boltdb/bolt".last ()
+	func (@"github.com/boltdb/bolt".c·4 *@"github.com/boltdb/bolt".Cursor) @"github.com/boltdb/bolt".next () (@"github.com/boltdb/bolt".key·1 []byte, @"github.com/boltdb/bolt".value·2 []byte, @"github.com/boltdb/bolt".flags·3 uint32)
+	func (@"github.com/boltdb/bolt".c·2 *@"github.com/boltdb/bolt".Cursor) @"github.com/boltdb/bolt".node () (? *@"github.com/boltdb/bolt".node)
+	func (@"github.com/boltdb/bolt".c·1 *@"github.com/boltdb/bolt".Cursor "esc:0x0") @"github.com/boltdb/bolt".nsearch (@"github.com/boltdb/bolt".key·2 []byte "esc:0x0")
+	func (@"github.com/boltdb/bolt".c·1 *@"github.com/boltdb/bolt".Cursor) @"github.com/boltdb/bolt".search (@"github.com/boltdb/bolt".key·2 []byte "esc:0x0", @"github.com/boltdb/bolt".pgid·3 @"github.com/boltdb/bolt".pgid)
+	func (@"github.com/boltdb/bolt".c·1 *@"github.com/boltdb/bolt".Cursor) @"github.com/boltdb/bolt".searchNode (@"github.com/boltdb/bolt".key·2 []byte "esc:0x0", @"github.com/boltdb/bolt".n·3 *@"github.com/boltdb/bolt".node "esc:0x0")
+	func (@"github.com/boltdb/bolt".c·1 *@"github.com/boltdb/bolt".Cursor) @"github.com/boltdb/bolt".searchPage (@"github.com/boltdb/bolt".key·2 []byte "esc:0x0", @"github.com/boltdb/bolt".p·3 *@"github.com/boltdb/bolt".page "esc:0x0")
+	func (@"github.com/boltdb/bolt".c·4 *@"github.com/boltdb/bolt".Cursor) @"github.com/boltdb/bolt".seek (@"github.com/boltdb/bolt".seek·5 []byte "esc:0x0") (@"github.com/boltdb/bolt".key·1 []byte, @"github.com/boltdb/bolt".value·2 []byte, @"github.com/boltdb/bolt".flags·3 uint32)
+	type @"github.com/boltdb/bolt".BucketStats struct { BranchPageN int; BranchOverflowN int; LeafPageN int; LeafOverflowN int; KeyN int; Depth int; BranchAlloc int; BranchInuse int; LeafAlloc int; LeafInuse int; BucketN int; InlineBucketN int; InlineBucketInuse int }
+	func (@"github.com/boltdb/bolt".s·1 *@"github.com/boltdb/bolt".BucketStats "esc:0x0") Add (@"github.com/boltdb/bolt".other·2 @"github.com/boltdb/bolt".BucketStats)
+	type @"github.com/boltdb/bolt".Bucket struct { @"github.com/boltdb/bolt".? *@"github.com/boltdb/bolt".bucket; @"github.com/boltdb/bolt".tx *@"github.com/boltdb/bolt".Tx; @"github.com/boltdb/bolt".buckets map[string]*@"github.com/boltdb/bolt".Bucket; @"github.com/boltdb/bolt".page *@"github.com/boltdb/bolt".page; @"github.com/boltdb/bolt".rootNode *@"github.com/boltdb/bolt".node; @"github.com/boltdb/bolt".nodes map[@"github.com/boltdb/bolt".pgid]*@"github.com/boltdb/bolt".node; FillPercent float64 }
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket) Bucket (@"github.com/boltdb/bolt".name·3 []byte "esc:0x0") (? *@"github.com/boltdb/bolt".Bucket)
+	func (@"github.com/boltdb/bolt".b·3 *@"github.com/boltdb/bolt".Bucket) CreateBucket (@"github.com/boltdb/bolt".key·4 []byte) (? *@"github.com/boltdb/bolt".Bucket, ? error)
+	func (@"github.com/boltdb/bolt".b·3 *@"github.com/boltdb/bolt".Bucket) CreateBucketIfNotExists (@"github.com/boltdb/bolt".key·4 []byte) (? *@"github.com/boltdb/bolt".Bucket, ? error)
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket) Cursor () (? *@"github.com/boltdb/bolt".Cursor) { @"github.com/boltdb/bolt".b·2.@"github.com/boltdb/bolt".tx.@"github.com/boltdb/bolt".stats.CursorCount += 0x1; return (&@"github.com/boltdb/bolt".Cursor{ @"github.com/boltdb/bolt".bucket:@"github.com/boltdb/bolt".b·2, @"github.com/boltdb/bolt".stack:make([]@"github.com/boltdb/bolt".elemRef, 0x0) }) }
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket) Delete (@"github.com/boltdb/bolt".key·3 []byte "esc:0x0") (? error)
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket) DeleteBucket (@"github.com/boltdb/bolt".key·3 []byte "esc:0x0") (? error)
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket) ForEach (@"github.com/boltdb/bolt".fn·3 func(@"github.com/boltdb/bolt".k []byte, @"github.com/boltdb/bolt".v []byte) (? error) "esc:0x0") (? error)
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket) Get (@"github.com/boltdb/bolt".key·3 []byte "esc:0x0") (? []byte)
+	func (@"github.com/boltdb/bolt".b·3 *@"github.com/boltdb/bolt".Bucket) NextSequence () (? uint64, ? error)
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket) Put (@"github.com/boltdb/bolt".key·3 []byte, @"github.com/boltdb/bolt".value·4 []byte) (? error)
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket "esc:0x0") Root () (? @"github.com/boltdb/bolt".pgid) { return @"github.com/boltdb/bolt".b·2.@"github.com/boltdb/bolt".bucket.@"github.com/boltdb/bolt".root }
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket) Stats () (? @"github.com/boltdb/bolt".BucketStats)
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket "esc:0x1") Tx () (? *@"github.com/boltdb/bolt".Tx) { return @"github.com/boltdb/bolt".b·2.@"github.com/boltdb/bolt".tx }
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket "esc:0x0") Writable () (? bool) { return @"github.com/boltdb/bolt".b·2.@"github.com/boltdb/bolt".tx.@"github.com/boltdb/bolt".writable }
+	func (@"github.com/boltdb/bolt".b·1 *@"github.com/boltdb/bolt".Bucket "esc:0x0") @"github.com/boltdb/bolt"._forEachPageNode (@"github.com/boltdb/bolt".pgid·2 @"github.com/boltdb/bolt".pgid, @"github.com/boltdb/bolt".depth·3 int, @"github.com/boltdb/bolt".fn·4 func(? *@"github.com/boltdb/bolt".page, ? *@"github.com/boltdb/bolt".node, ? int) "esc:0x0")
+	func (@"github.com/boltdb/bolt".b·1 *@"github.com/boltdb/bolt".Bucket) @"github.com/boltdb/bolt".dereference ()
+	func (@"github.com/boltdb/bolt".b·1 *@"github.com/boltdb/bolt".Bucket) @"github.com/boltdb/bolt".forEachPage (@"github.com/boltdb/bolt".fn·2 func(? *@"github.com/boltdb/bolt".page, ? int) "esc:0x0")
+	func (@"github.com/boltdb/bolt".b·1 *@"github.com/boltdb/bolt".Bucket) @"github.com/boltdb/bolt".forEachPageNode (@"github.com/boltdb/bolt".fn·2 func(? *@"github.com/boltdb/bolt".page, ? *@"github.com/boltdb/bolt".node, ? int) "esc:0x0")
+	func (@"github.com/boltdb/bolt".b·1 *@"github.com/boltdb/bolt".Bucket) @"github.com/boltdb/bolt".free ()
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket "esc:0x0") @"github.com/boltdb/bolt".inlineable () (? bool)
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket "esc:0x0") @"github.com/boltdb/bolt".maxInlineBucketSize () (? int) { return @"github.com/boltdb/bolt".b·2.@"github.com/boltdb/bolt".tx.@"github.com/boltdb/bolt".db.@"github.com/boltdb/bolt".pageSize / 0x4 }
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket) @"github.com/boltdb/bolt".node (@"github.com/boltdb/bolt".pgid·3 @"github.com/boltdb/bolt".pgid, @"github.com/boltdb/bolt".parent·4 *@"github.com/boltdb/bolt".node) (? *@"github.com/boltdb/bolt".node)
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket "esc:0x2") @"github.com/boltdb/bolt".openBucket (@"github.com/boltdb/bolt".value·3 []byte) (? *@"github.com/boltdb/bolt".Bucket)
+	func (@"github.com/boltdb/bolt".b·3 *@"github.com/boltdb/bolt".Bucket "esc:0x1") @"github.com/boltdb/bolt".pageNode (@"github.com/boltdb/bolt".id·4 @"github.com/boltdb/bolt".pgid) (? *@"github.com/boltdb/bolt".page, ? *@"github.com/boltdb/bolt".node)
+	func (@"github.com/boltdb/bolt".b·1 *@"github.com/boltdb/bolt".Bucket "esc:0x0") @"github.com/boltdb/bolt".rebalance ()
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket) @"github.com/boltdb/bolt".spill () (? error)
+	func (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket "esc:0x0") @"github.com/boltdb/bolt".write () (? []byte)
+	type @"github.com/boltdb/bolt".TxStats struct { PageCount int; PageAlloc int; CursorCount int; NodeCount int; NodeDeref int; Rebalance int; RebalanceTime @"time".Duration; Split int; Spill int; SpillTime @"time".Duration; Write int; WriteTime @"time".Duration }
+	func (@"github.com/boltdb/bolt".s·2 *@"github.com/boltdb/bolt".TxStats "esc:0x0") Sub (@"github.com/boltdb/bolt".other·3 *@"github.com/boltdb/bolt".TxStats "esc:0x0") (? @"github.com/boltdb/bolt".TxStats)
+	func (@"github.com/boltdb/bolt".s·1 *@"github.com/boltdb/bolt".TxStats "esc:0x0") @"github.com/boltdb/bolt".add (@"github.com/boltdb/bolt".other·2 *@"github.com/boltdb/bolt".TxStats "esc:0x0")
+	import io "io" // indirect
+	type @"io".Writer interface { Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+	type @"github.com/boltdb/bolt".PageInfo struct { ID int; Type string; Count int; OverflowCount int }
+	type @"github.com/boltdb/bolt".Tx struct { @"github.com/boltdb/bolt".writable bool; @"github.com/boltdb/bolt".managed bool; @"github.com/boltdb/bolt".db *@"github.com/boltdb/bolt".DB; @"github.com/boltdb/bolt".meta *@"github.com/boltdb/bolt".meta; @"github.com/boltdb/bolt".root @"github.com/boltdb/bolt".Bucket; @"github.com/boltdb/bolt".pages map[@"github.com/boltdb/bolt".pgid]*@"github.com/boltdb/bolt".page; @"github.com/boltdb/bolt".stats @"github.com/boltdb/bolt".TxStats; @"github.com/boltdb/bolt".commitHandlers []func() }
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx) Bucket (@"github.com/boltdb/bolt".name·3 []byte "esc:0x0") (? *@"github.com/boltdb/bolt".Bucket)
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx) Check () (? <-chan error)
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx) Commit () (? error)
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx) Copy (@"github.com/boltdb/bolt".w·3 @"io".Writer) (? error)
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx) CopyFile (@"github.com/boltdb/bolt".path·3 string, @"github.com/boltdb/bolt".mode·4 @"os".FileMode) (? error)
+	func (@"github.com/boltdb/bolt".tx·3 *@"github.com/boltdb/bolt".Tx) CreateBucket (@"github.com/boltdb/bolt".name·4 []byte) (? *@"github.com/boltdb/bolt".Bucket, ? error)
+	func (@"github.com/boltdb/bolt".tx·3 *@"github.com/boltdb/bolt".Tx) CreateBucketIfNotExists (@"github.com/boltdb/bolt".name·4 []byte) (? *@"github.com/boltdb/bolt".Bucket, ? error)
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx) Cursor () (? *@"github.com/boltdb/bolt".Cursor)
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx "esc:0x1") DB () (? *@"github.com/boltdb/bolt".DB) { return @"github.com/boltdb/bolt".tx·2.@"github.com/boltdb/bolt".db }
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx) DeleteBucket (@"github.com/boltdb/bolt".name·3 []byte "esc:0x0") (? error)
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx) ForEach (@"github.com/boltdb/bolt".fn·3 func(@"github.com/boltdb/bolt".name []byte, @"github.com/boltdb/bolt".b *@"github.com/boltdb/bolt".Bucket) (? error) "esc:0x0") (? error)
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx "esc:0x0") ID () (? int) { return int(@"github.com/boltdb/bolt".tx·2.@"github.com/boltdb/bolt".meta.@"github.com/boltdb/bolt".txid) }
+	func (@"github.com/boltdb/bolt".tx·1 *@"github.com/boltdb/bolt".Tx) OnCommit (@"github.com/boltdb/bolt".fn·2 func()) { @"github.com/boltdb/bolt".tx·1.@"github.com/boltdb/bolt".commitHandlers = append(@"github.com/boltdb/bolt".tx·1.@"github.com/boltdb/bolt".commitHandlers, @"github.com/boltdb/bolt".fn·2) }
+	func (@"github.com/boltdb/bolt".tx·3 *@"github.com/boltdb/bolt".Tx "esc:0x0") Page (@"github.com/boltdb/bolt".id·4 int) (? *@"github.com/boltdb/bolt".PageInfo, ? error)
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx) Rollback () (? error)
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx "esc:0x0") Size () (? int64) { return int64(@"github.com/boltdb/bolt".tx·2.@"github.com/boltdb/bolt".meta.@"github.com/boltdb/bolt".pgid) * int64(@"github.com/boltdb/bolt".tx·2.@"github.com/boltdb/bolt".db.@"github.com/boltdb/bolt".pageSize) }
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx "esc:0x0") Stats () (? @"github.com/boltdb/bolt".TxStats) { return @"github.com/boltdb/bolt".tx·2.@"github.com/boltdb/bolt".stats }
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx "esc:0x0") Writable () (? bool) { return @"github.com/boltdb/bolt".tx·2.@"github.com/boltdb/bolt".writable }
+	func (@"github.com/boltdb/bolt".tx·3 *@"github.com/boltdb/bolt".Tx) WriteTo (@"github.com/boltdb/bolt".w·4 @"io".Writer) (@"github.com/boltdb/bolt".n·1 int64, @"github.com/boltdb/bolt".err·2 error)
+	func (@"github.com/boltdb/bolt".tx·3 *@"github.com/boltdb/bolt".Tx) @"github.com/boltdb/bolt".allocate (@"github.com/boltdb/bolt".count·4 int) (? *@"github.com/boltdb/bolt".page, ? error)
+	func (@"github.com/boltdb/bolt".tx·1 *@"github.com/boltdb/bolt".Tx) @"github.com/boltdb/bolt".check (@"github.com/boltdb/bolt".ch·2 chan error "esc:0x0")
+	func (@"github.com/boltdb/bolt".tx·1 *@"github.com/boltdb/bolt".Tx "esc:0x0") @"github.com/boltdb/bolt".checkBucket (@"github.com/boltdb/bolt".b·2 *@"github.com/boltdb/bolt".Bucket, @"github.com/boltdb/bolt".reachable·3 map[@"github.com/boltdb/bolt".pgid]*@"github.com/boltdb/bolt".page "esc:0x0", @"github.com/boltdb/bolt".freed·4 map[@"github.com/boltdb/bolt".pgid]bool "esc:0x0", @"github.com/boltdb/bolt".ch·5 chan error "esc:0x0")
+	func (@"github.com/boltdb/bolt".tx·1 *@"github.com/boltdb/bolt".Tx) @"github.com/boltdb/bolt".close ()
+	func (@"github.com/boltdb/bolt".tx·1 *@"github.com/boltdb/bolt".Tx "esc:0x0") @"github.com/boltdb/bolt".forEachPage (@"github.com/boltdb/bolt".pgid·2 @"github.com/boltdb/bolt".pgid, @"github.com/boltdb/bolt".depth·3 int, @"github.com/boltdb/bolt".fn·4 func(? *@"github.com/boltdb/bolt".page, ? int) "esc:0x0")
+	func (@"github.com/boltdb/bolt".tx·1 *@"github.com/boltdb/bolt".Tx) @"github.com/boltdb/bolt".init (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB)
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx "esc:0x1") @"github.com/boltdb/bolt".page (@"github.com/boltdb/bolt".id·3 @"github.com/boltdb/bolt".pgid) (? *@"github.com/boltdb/bolt".page)
+	func (@"github.com/boltdb/bolt".tx·1 *@"github.com/boltdb/bolt".Tx) @"github.com/boltdb/bolt".rollback ()
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx "esc:0x0") @"github.com/boltdb/bolt".write () (? error)
+	func (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx) @"github.com/boltdb/bolt".writeMeta () (? error)
+	type @"github.com/boltdb/bolt".freelist struct { @"github.com/boltdb/bolt".ids []@"github.com/boltdb/bolt".pgid; @"github.com/boltdb/bolt".pending map[@"github.com/boltdb/bolt".txid][]@"github.com/boltdb/bolt".pgid; @"github.com/boltdb/bolt".cache map[@"github.com/boltdb/bolt".pgid]bool }
+	func (@"github.com/boltdb/bolt".f·2 *@"github.com/boltdb/bolt".freelist "esc:0x0") @"github.com/boltdb/bolt".all () (? []@"github.com/boltdb/bolt".pgid)
+	func (@"github.com/boltdb/bolt".f·2 *@"github.com/boltdb/bolt".freelist) @"github.com/boltdb/bolt".allocate (@"github.com/boltdb/bolt".n·3 int) (? @"github.com/boltdb/bolt".pgid)
+	func (@"github.com/boltdb/bolt".f·2 *@"github.com/boltdb/bolt".freelist "esc:0x0") @"github.com/boltdb/bolt".count () (? int)
+	func (@"github.com/boltdb/bolt".f·1 *@"github.com/boltdb/bolt".freelist "esc:0x0") @"github.com/boltdb/bolt".free (@"github.com/boltdb/bolt".txid·2 @"github.com/boltdb/bolt".txid, @"github.com/boltdb/bolt".p·3 *@"github.com/boltdb/bolt".page "esc:0x0")
+	func (@"github.com/boltdb/bolt".f·2 *@"github.com/boltdb/bolt".freelist "esc:0x0") @"github.com/boltdb/bolt".free_count () (? int) { return len(@"github.com/boltdb/bolt".f·2.@"github.com/boltdb/bolt".ids) }
+	func (@"github.com/boltdb/bolt".f·2 *@"github.com/boltdb/bolt".freelist "esc:0x0") @"github.com/boltdb/bolt".freed (@"github.com/boltdb/bolt".pgid·3 @"github.com/boltdb/bolt".pgid) (? bool) { return @"github.com/boltdb/bolt".f·2.@"github.com/boltdb/bolt".cache[@"github.com/boltdb/bolt".pgid·3] }
+	func (@"github.com/boltdb/bolt".f·2 *@"github.com/boltdb/bolt".freelist "esc:0x0") @"github.com/boltdb/bolt".pending_count () (? int)
+	func (@"github.com/boltdb/bolt".f·1 *@"github.com/boltdb/bolt".freelist) @"github.com/boltdb/bolt".read (@"github.com/boltdb/bolt".p·2 *@"github.com/boltdb/bolt".page "esc:0x0")
+	func (@"github.com/boltdb/bolt".f·1 *@"github.com/boltdb/bolt".freelist "esc:0x0") @"github.com/boltdb/bolt".reindex ()
+	func (@"github.com/boltdb/bolt".f·1 *@"github.com/boltdb/bolt".freelist) @"github.com/boltdb/bolt".release (@"github.com/boltdb/bolt".txid·2 @"github.com/boltdb/bolt".txid)
+	func (@"github.com/boltdb/bolt".f·1 *@"github.com/boltdb/bolt".freelist) @"github.com/boltdb/bolt".reload (@"github.com/boltdb/bolt".p·2 *@"github.com/boltdb/bolt".page "esc:0x0")
+	func (@"github.com/boltdb/bolt".f·1 *@"github.com/boltdb/bolt".freelist "esc:0x0") @"github.com/boltdb/bolt".rollback (@"github.com/boltdb/bolt".txid·2 @"github.com/boltdb/bolt".txid)
+	func (@"github.com/boltdb/bolt".f·2 *@"github.com/boltdb/bolt".freelist "esc:0x0") @"github.com/boltdb/bolt".size () (? int)
+	func (@"github.com/boltdb/bolt".f·2 *@"github.com/boltdb/bolt".freelist "esc:0x0") @"github.com/boltdb/bolt".write (@"github.com/boltdb/bolt".p·3 *@"github.com/boltdb/bolt".page "esc:0x0") (? error)
+	type @"github.com/boltdb/bolt".Stats struct { FreePageN int; PendingPageN int; FreeAlloc int; FreelistInuse int; TxN int; OpenTxN int; TxStats @"github.com/boltdb/bolt".TxStats }
+	func (@"github.com/boltdb/bolt".s·2 *@"github.com/boltdb/bolt".Stats "esc:0x0") Sub (@"github.com/boltdb/bolt".other·3 *@"github.com/boltdb/bolt".Stats "esc:0x0") (? @"github.com/boltdb/bolt".Stats)
+	func (@"github.com/boltdb/bolt".s·1 *@"github.com/boltdb/bolt".Stats "esc:0x0") @"github.com/boltdb/bolt".add (@"github.com/boltdb/bolt".other·2 *@"github.com/boltdb/bolt".Stats "esc:0x0")
+	import sync "sync" // indirect
+	type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+	func (@"sync".m·1 *@"sync".Mutex) Lock ()
+	func (@"sync".m·1 *@"sync".Mutex) Unlock ()
+	type @"time".runtimeTimer struct { @"time".i int32; @"time".when int64; @"time".period int64; @"time".f func(? int64, ? interface {}); @"time".arg interface {} }
+	type @"time".Timer struct { C <-chan @"time".Time; @"time".r @"time".runtimeTimer }
+	func (@"time".t·2 *@"time".Timer) Reset (@"time".d·3 @"time".Duration) (? bool)
+	func (@"time".t·2 *@"time".Timer) Stop () (? bool)
+	type @"sync".Once struct { @"sync".m @"sync".Mutex; @"sync".done uint32 }
+	func (@"sync".o·1 *@"sync".Once) Do (@"sync".f·2 func() "esc:0x0")
+	type @"github.com/boltdb/bolt".call struct { @"github.com/boltdb/bolt".fn func(? *@"github.com/boltdb/bolt".Tx) (? error); @"github.com/boltdb/bolt".err chan<- error }
+	type @"github.com/boltdb/bolt".batch struct { @"github.com/boltdb/bolt".db *@"github.com/boltdb/bolt".DB; @"github.com/boltdb/bolt".timer *@"time".Timer; @"github.com/boltdb/bolt".start @"sync".Once; @"github.com/boltdb/bolt".calls []@"github.com/boltdb/bolt".call }
+	func (@"github.com/boltdb/bolt".b·1 *@"github.com/boltdb/bolt".batch) @"github.com/boltdb/bolt".run ()
+	func (@"github.com/boltdb/bolt".b·1 *@"github.com/boltdb/bolt".batch) @"github.com/boltdb/bolt".trigger ()
+	type @"sync".Locker interface { Lock(); Unlock() }
+	type @"sync".RWMutex struct { @"sync".w @"sync".Mutex; @"sync".writerSem uint32; @"sync".readerSem uint32; @"sync".readerCount int32; @"sync".readerWait int32 }
+	func (@"sync".rw·1 *@"sync".RWMutex) Lock ()
+	func (@"sync".rw·1 *@"sync".RWMutex) RLock ()
+	func (@"sync".rw·2 *@"sync".RWMutex "esc:0x2") RLocker () (? @"sync".Locker) { return (*@"sync".rlocker)(@"sync".rw·2) }
+	func (@"sync".rw·1 *@"sync".RWMutex) RUnlock ()
+	func (@"sync".rw·1 *@"sync".RWMutex) Unlock ()
+	type @"github.com/boltdb/bolt".Info struct { Data uintptr; PageSize int }
+	type @"github.com/boltdb/bolt".DB struct { StrictMode bool; NoSync bool; MaxBatchSize int; MaxBatchDelay @"time".Duration; @"github.com/boltdb/bolt".path string; @"github.com/boltdb/bolt".file *@"os".File; @"github.com/boltdb/bolt".dataref []byte; @"github.com/boltdb/bolt".data *[2147483647]byte; @"github.com/boltdb/bolt".datasz int; @"github.com/boltdb/bolt".meta0 *@"github.com/boltdb/bolt".meta; @"github.com/boltdb/bolt".meta1 *@"github.com/boltdb/bolt".meta; @"github.com/boltdb/bolt".pageSize int; @"github.com/boltdb/bolt".opened bool; @"github.com/boltdb/bolt".rwtx *@"github.com/boltdb/bolt".Tx; @"github.com/boltdb/bolt".txs []*@"github.com/boltdb/bolt".Tx; @"github.com/boltdb/bolt".freelist *@"github.com/boltdb/bolt".freelist; @"github.com/boltdb/bolt".stats @"github.com/boltdb/bolt".Stats; @"github.com/boltdb/bolt".batchMu @"sync".Mutex; @"github.com/boltdb/bolt".batch *@"github.com/boltdb/bolt".batch; @"github.com/boltdb/bolt".rwlock @"sync".Mutex; @"github.com/boltdb/bolt".metalock @"sync".Mutex; @"github.com/boltdb/bolt".mmaplock @"sync".RWMutex; @"github.com/boltdb/bolt".statlock @"sync".RWMutex; @"github.com/boltdb/bolt".ops struct { @"github.com/boltdb/bolt".writeAt func(@"github.com/boltdb/bolt".b []byte, @"github.com/boltdb/bolt".off int64) (@"github.com/boltdb/bolt".n int, @"github.com/boltdb/bolt".err error) } }
+	func (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB) Batch (@"github.com/boltdb/bolt".fn·3 func(? *@"github.com/boltdb/bolt".Tx) (? error)) (? error)
+	func (@"github.com/boltdb/bolt".db·3 *@"github.com/boltdb/bolt".DB) Begin (@"github.com/boltdb/bolt".writable·4 bool) (? *@"github.com/boltdb/bolt".Tx, ? error)
+	func (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB) Close () (? error)
+	func (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB) GoString () (? string)
+	func (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB) Info () (? *@"github.com/boltdb/bolt".Info) { return (&@"github.com/boltdb/bolt".Info{ Data:uintptr(@"unsafe".Pointer(&@"github.com/boltdb/bolt".db·2.@"github.com/boltdb/bolt".data[0x0])), PageSize:@"github.com/boltdb/bolt".db·2.@"github.com/boltdb/bolt".pageSize }) }
+	func (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB "esc:0x1") Path () (? string) { return @"github.com/boltdb/bolt".db·2.@"github.com/boltdb/bolt".path }
+	func (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB) Stats () (? @"github.com/boltdb/bolt".Stats)
+	func (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB) String () (? string)
+	func (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB) Update (@"github.com/boltdb/bolt".fn·3 func(? *@"github.com/boltdb/bolt".Tx) (? error) "esc:0x0") (? error)
+	func (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB) View (@"github.com/boltdb/bolt".fn·3 func(? *@"github.com/boltdb/bolt".Tx) (? error) "esc:0x0") (? error)
+	func (@"github.com/boltdb/bolt".db·3 *@"github.com/boltdb/bolt".DB) @"github.com/boltdb/bolt".allocate (@"github.com/boltdb/bolt".count·4 int) (? *@"github.com/boltdb/bolt".page, ? error)
+	func (@"github.com/boltdb/bolt".db·3 *@"github.com/boltdb/bolt".DB) @"github.com/boltdb/bolt".beginRWTx () (? *@"github.com/boltdb/bolt".Tx, ? error)
+	func (@"github.com/boltdb/bolt".db·3 *@"github.com/boltdb/bolt".DB) @"github.com/boltdb/bolt".beginTx () (? *@"github.com/boltdb/bolt".Tx, ? error)
+	func (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB) @"github.com/boltdb/bolt".close () (? error)
+	func (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB "esc:0x0") @"github.com/boltdb/bolt".init () (? error)
+	func (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB "esc:0x1") @"github.com/boltdb/bolt".meta () (? *@"github.com/boltdb/bolt".meta) { if @"github.com/boltdb/bolt".db·2.@"github.com/boltdb/bolt".meta0.@"github.com/boltdb/bolt".txid > @"github.com/boltdb/bolt".db·2.@"github.com/boltdb/bolt".meta1.@"github.com/boltdb/bolt".txid { return @"github.com/boltdb/bolt".db·2.@"github.com/boltdb/bolt".meta0 }; return @"github.com/boltdb/bolt".db·2.@"github.com/boltdb/bolt".meta1 }
+	func (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB) @"github.com/boltdb/bolt".mmap (@"github.com/boltdb/bolt".minsz·3 int) (? error)
+	func (@"github.com/boltdb/bolt".db·3 *@"github.com/boltdb/bolt".DB "esc:0x0") @"github.com/boltdb/bolt".mmapSize (@"github.com/boltdb/bolt".size·4 int) (? int, ? error)
+	func (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB "esc:0x0") @"github.com/boltdb/bolt".munmap () (? error)
+	func (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB "esc:0x1") @"github.com/boltdb/bolt".page (@"github.com/boltdb/bolt".id·3 @"github.com/boltdb/bolt".pgid) (? *@"github.com/boltdb/bolt".page) { var @"github.com/boltdb/bolt".pos·4 @"github.com/boltdb/bolt".pgid; ; @"github.com/boltdb/bolt".pos·4 = @"github.com/boltdb/bolt".id·3 * @"github.com/boltdb/bolt".pgid(@"github.com/boltdb/bolt".db·2.@"github.com/boltdb/bolt".pageSize); return (*@"github.com/boltdb/bolt".page)(@"unsafe".Pointer(&@"github.com/boltdb/bolt".db·2.@"github.com/boltdb/bolt".data[@"github.com/boltdb/bolt".pos·4])) }
+	func (@"github.com/boltdb/bolt".db·2 *@"github.com/boltdb/bolt".DB "esc:0x0") @"github.com/boltdb/bolt".pageInBuffer (@"github.com/boltdb/bolt".b·3 []byte "esc:0x2", @"github.com/boltdb/bolt".id·4 @"github.com/boltdb/bolt".pgid) (? *@"github.com/boltdb/bolt".page) { return (*@"github.com/boltdb/bolt".page)(@"unsafe".Pointer(&@"github.com/boltdb/bolt".b·3[@"github.com/boltdb/bolt".id·4 * @"github.com/boltdb/bolt".pgid(@"github.com/boltdb/bolt".db·2.@"github.com/boltdb/bolt".pageSize)])) }
+	func (@"github.com/boltdb/bolt".db·1 *@"github.com/boltdb/bolt".DB) @"github.com/boltdb/bolt".removeTx (@"github.com/boltdb/bolt".tx·2 *@"github.com/boltdb/bolt".Tx "esc:0x0")
+	func @"".InitDB (@"".dbname·3 string) (? *@"github.com/boltdb/bolt".DB, ? error)
+	func @"".init ()
+	var @"time".months [12]string
+	var @"time".days [7]string
+	var @"time".Local *@"time".Location
+	var @"time".UTC *@"time".Location
+	import unsafe "unsafe" // indirect
+	type @"sync".rlocker struct { @"sync".w @"sync".Mutex; @"sync".writerSem uint32; @"sync".readerSem uint32; @"sync".readerCount int32; @"sync".readerWait int32 }
+	func (@"sync".r·1 *@"sync".rlocker) Lock ()
+	func (@"sync".r·1 *@"sync".rlocker) Unlock ()
+
+$$
+ _go_.8          0           0     0     644     6688      `
+go object linux 386 go1.3 X:precisestack
+
+!
+  go13ld0github.com/boltdb/bolt.a
+log.a �"".InitDB  �  �e�    ��    ;!w1��   �    ���H�D$X    �D$\    �\$L�$�\$P�\$�D$�  �D$    �    �\$�\$ �L$�T$�� t`�|$41����\$4�� tk�\$<�D$@   �D$D   �L$,�$�T$0�T$�    �T$<�\$�މ�����$�\$@�\$�\$D�\$�    �\$ �\$T�D$X    �D$\    ��HÉ�
+      2  0runtime.morestack_noctxt   �  6github.com/boltdb/bolt.Open   �  runtime.convI2E   �  log.Fatal   (�  "".autotmp_0001 &type.[]interface {} "".autotmp_0000 '(type.[1]interface {} "".err 7type.error 
+"".db O>type.*github.com/boltdb/bolt.DB "".~r2 type.error "".~r1 >type.*github.com/boltdb/bolt.DB "".dbname  type.string "����	 � 24`	  �"	!H  QN'*     Tgclocals·304a5394f2b33c5b269c9697e454b616 Tgclocals·0cc805c183e3627db0a777aabc4c01b9     �/home/khoa/Desktop/Go-lang/smsapp/src/github.com/acmakhoa/smsapp/db.go�"".init  �  �e�    ��    ;!w1�1��    ��=     t�=    u��    �    �    �    �    �      ,  0runtime.morestack_noctxt   <  "".initdone·   N  "".initdone·   `  "runtime.throwinit   p  "".initdone·   |  log.init   �  6github.com/boltdb/bolt.init   �  "".initdone·        P P  P 
+ /! 
+ /!     Tgclocals·3280bececceccd33cb74587feedb1f9f Tgclocals·3280bececceccd33cb74587feedb1f9f     �/home/khoa/Desktop/Go-lang/smsapp/src/github.com/acmakhoa/smsapp/db.go�4type..hash.[1]interface {} �  �e�    ��    ;!w1��   �    ����D$1��D$   �\$9�}O�L$�(�����	݉(�i��v��$�D$   �\$$�� t#�3�4Ήt$�    �D$�L$A�\$9�|���É��      2  0runtime.morestack_noctxt   �  (runtime.nilinterhash   0  
+"".autotmp_0007 type.int "".autotmp_0006 type.int "".p *type.*[1]interface {} "".s type.uintptr "".h  type.*uintptr "0h/0 � �  q	 
+ q     Tgclocals·c34189e3b824b0bbe5cf2ca4e567d435 Tgclocals·a7a3692b8e27e823add69ec4239ba55f     �/home/khoa/Desktop/Go-lang/smsapp/src/github.com/acmakhoa/smsapp/db.go�0type..eq.[1]interface {} �  �e�    ��    ;!w1��   �    ���41��D$   �\$9�}m�D$�\$D�� tz�3�4Ƌ>�n�l$0�\$@�� t_�3�4Ƌ�v9�uF�T$$�$�t$(�t$�|$,�|$�l$0�l$�    �\$�� t�D$@�\$9�|��\$8���4Ë\$8� ��4É띉�      2  0runtime.morestack_noctxt   �  runtime.efaceeq    h  "".autotmp_0024 "type.interface {} "".autotmp_0023 "type.interface {} "".autotmp_0022 ?type.int "".autotmp_0021 7type.int "".q *type.*[1]interface {} "".p *type.*[1]interface {} "".s type.uintptr 
+"".eq  type.*bool "h�gh
+gh	 � �  �*)6  �;     Tgclocals·42ea2d2340f90cf3f379f66fe4b2d382 Tgclocals·f883d3996c76325fd1714d4e3de9fa33     �/home/khoa/Desktop/Go-lang/smsapp/src/github.com/acmakhoa/smsapp/db.go�Tgclocals·0cc805c183e3627db0a777aabc4c01b9 (  (          � <   �Tgclocals·304a5394f2b33c5b269c9697e454b616 (  (   
+             �Tgclocals·3280bececceccd33cb74587feedb1f9f           �Tgclocals·3280bececceccd33cb74587feedb1f9f           �,"".initdone·  type.uint8   �"".InitDB·f          "".InitDB   �<github.com/boltdb/bolt.Open·f          6github.com/boltdb/bolt.Open   �$runtime.convI2E·f          runtime.convI2E   �log.Fatal·f          log.Fatal   �,runtime.throwreturn·f          &runtime.throwreturn   �"".init·f          "".init   �(runtime.throwinit·f          "runtime.throwinit   �log.init·f          log.init   �<github.com/boltdb/bolt.init·f          6github.com/boltdb/bolt.init   �*type..gc.interface {}                    �0go.string."interface {}" 0  *       interface {}   0go.string."interface {}"   �"type.interface {} `  `   �W�                                     �  runtime.algarray      *type..gc.interface {}   (  0go.string."interface {}"   8  4go.weak.type.*interface {}   @  "runtime.zerovalue   H` "type.interface {}   �.type..gc.[]interface {} (  (   
+                 *type..gc.interface {}   �4go.string."[]interface {}" 0  .       []interface {}   4go.string."[]interface {}"   �&type.[]interface {} P  P   p��/                             �  runtime.algarray      .type..gc.[]interface {}   (  4go.string."[]interface {}"   8  8go.weak.type.*[]interface {}   @  "runtime.zerovalue   H  "type.interface {}   �Rgo.typelink.[]interface {}/[]interface {}          &type.[]interface {}   �Tgclocals·a7a3692b8e27e823add69ec4239ba55f              �Tgclocals·c34189e3b824b0bbe5cf2ca4e567d435         &    �Tgclocals·f883d3996c76325fd1714d4e3de9fa33              �Tgclocals·42ea2d2340f90cf3f379f66fe4b2d382         �    �2type..alg.[1]interface {}                        4type..hash.[1]interface {}     0type..eq.[1]interface {}      runtime.memprint     "runtime.memcopy64   �0type..gc.[1]interface {}                    �6go.string."[1]interface {}" 0  0       [1]interface {}   6go.string."[1]interface {}"   �(type.[1]interface {} `  `   P�[�                                      2type..alg.[1]interface {}      0type..gc.[1]interface {}   (  6go.string."[1]interface {}"   8  :go.weak.type.*[1]interface {}   @  "runtime.zerovalue   H  "type.interface {}   P  &type.[]interface {}   �Vgo.typelink.[1]interface {}/[1]interface {}          (type.[1]interface {}   �2type..gc.*[1]interface {} (  (                    0type..gc.[1]interface {}   �8go.string."*[1]interface {}" 8  2       *[1]interface {}   8go.string."*[1]interface {}"   �*type.*[1]interface {} P  P   ��5                             �  runtime.algarray      2type..gc.*[1]interface {}   (  8go.string."*[1]interface {}"   8  <go.weak.type.**[1]interface {}   @  "runtime.zerovalue   H  (type.[1]interface {}   �go.string."log"          log   go.string."log"   �$go.importpath.log.            go.string."log"   �&go.string."runtime"            runtime   &go.string."runtime"   �,go.importpath.runtime.            &go.string."runtime"   �Dgo.string."github.com/boltdb/bolt" @  >       github.com/boltdb/bolt   Dgo.string."github.com/boltdb/bolt"   �Jgo.importpath.github.com/boltdb/bolt.            Dgo.string."github.com/boltdb/bolt"   �:type..hash.[1]interface {}·f          4type..hash.[1]interface {}   �.runtime.nilinterhash·f          (runtime.nilinterhash   �6type..eq.[1]interface {}·f          0type..eq.[1]interface {}   �$runtime.efaceeq·f          runtime.efaceeq   �"runtime.zerovalue      ��go13ld

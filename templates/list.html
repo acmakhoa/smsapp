@@ -1,0 +1,37 @@
+{{%template "header.html" .%}}
+  	
+  	<h1>List SMS</h1>
+
+      <div ng-controller="ListController">
+      		<div class="table-responsive">
+			  <table class="table">
+			   <tr>
+			   		  					   		
+			   		<th>Name</th>			   					   		
+			   		<th>Created</th>
+			   		<th>Resend</th>
+			   		<th>Delete</th>
+			   </tr>
+			   <tr ng-repeat="item in lists track by $index">			   	
+			   		<td><a href="/list/{{item.Id}}">{{item.Name}}<a></td>
+			   		<td>{{item.Created | date:'M/d/yyyy'}}</td>	
+			   		<td>
+			   			<a ng-click="send(item,$index)" class="btn" > 
+			   				<span class="glyphicon glyphicon-refresh"> </span>
+			   			</a>
+			   		</td>		 
+			   		<td>			   			
+			   			<a ng-click="delete(item,$index)" class="btn" > 
+			   				<span class="glyphicon glyphicon-remove"> </span>
+			   			</a>
+			   		</td>			 
+			   </tr>
+			  </table>
+			</div>      		
+      </div>
+
+      <script src="assets/js/app/ListController.js"></script>
+     
+   
+
+{{%template "footer.html" .%}}

@@ -1,0 +1,40 @@
+{{%template "header.html" .%}}
+  
+
+      <div ng-controller="HomeController">
+      		<div class="table-responsive">
+			  <table class="table">
+			   <tr>
+			   		<th>Phone</th>
+			   		<th>Name</th>			   		
+			   		<th>Status</th>			   		
+			   		<th>Created</th>
+			   		<th>Resend</th>
+			   		<th>Delete</th>
+			   </tr>
+			   <tr ng-repeat="item in sms track by $index|orderBy:'Created'">
+			   		<td>{{item.Id}}</td>
+			   		<td>{{item.Name}}</td>			   		
+			   		<td>{{item.Status}}</td>
+			   		
+			   		<td>{{item.Created| date:'M/d/yyyy HH:mm:ss'}}</td>	
+			   		<td>
+			   			<a ng-click="send(item,$index)" class="btn" > 
+			   				<span class="glyphicon glyphicon-refresh"> </span>
+			   			</a>
+			   		</td>		 
+			   		<td>			   			
+			   			<a ng-click="delete(item,$index)" class="btn" > 
+			   				<span class="glyphicon glyphicon-remove"> </span>
+			   			</a>
+			   		</td>			 
+			   </tr>
+			  </table>
+			</div>      		
+      </div>
+
+      <script src="assets/js/app/HomeController.js"></script>
+     
+   
+
+{{%template "footer.html" .%}}
