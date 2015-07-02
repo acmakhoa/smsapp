@@ -5,12 +5,13 @@ import (
 	"github.com/haxpax/goserial"
 	"strings"
 	"time"
+	"errors"
 )
 
 const (
 	SMSPending   = iota // 0
 	SMSProcessed        // 1
-	SMSError            // 2
+	SMSError            // 2	
 )
 type SMSWorker struct{
 	Phone string
@@ -19,23 +20,14 @@ type SMSWorker struct{
 
 var messages chan SMSWorker
 
+var avaliableModem []*GSMModem
+
 type GSMModem struct {
 	Port   string
 	Baud   int
 	Status bool
 	Conn   serial.ReadWriteFlushCloser
 	Devid  string
-}
-
-func (m *GSMModem) Connect() error {
-	//log.Println("--- Connect")
-	c := &serial.Config{Name: m.Port, Baud: m.Baud, ReadTimeout: time.Second}
-	s, err := serial.OpenPort(c)
-	if err == nil {
-		m.Status = true
-		m.Conn = s
-	}
-	return err
 }
 
 func (m *GSMModem) SendCommand(command string, waitForOk bool) string {
@@ -46,14 +38,14 @@ func (m *GSMModem) SendCommand(command string, waitForOk bool) string {
 	if err != nil {
 		log.Fatal(err)
 	}
-	buf := make([]byte, 32)
+	buf := make([]byte, 100)
 	var loop int = 1
 	if waitForOk {
 		loop = 10
 	}
-	for i := 0; i < loop; i++ {
+	for i := 0; i < loop; i++ {		
 		// ignoring error as EOF raises error on Linux
-		n, _ := m.Conn.Read(buf)
+		n, _ := m.Conn.Read(buf)	
 		if n > 0 {
 			status = string(buf[:n])
 			log.Printf("SendCommand: rcvd %d bytes: %s\n", n, status)
@@ -65,8 +57,45 @@ func (m *GSMModem) SendCommand(command string, waitForOk bool) string {
 	return status
 }
 
+
+func (m *GSMModem) IsModem() int {	
+	status := m.SendCommand("AT\r", false)
+	log.Println("--- Is Modem Status ==== ", status)
+	if strings.HasSuffix(status, "OK\r\n") {
+		return 1
+	} else if strings.HasSuffix(status, "ERROR\r\n") {
+		return 0
+	} else{
+		return -1
+	}
+
+}
+
+func (m *GSMModem) Connect() error {	
+	c := &serial.Config{Name: m.Port, Baud: m.Baud, ReadTimeout: time.Second}
+	s, err := serial.OpenPort(c)
+
+	if err == nil {
+		log.Println("Open modem: ",m.Port)
+		m.Status = true
+		m.Conn = s	
+		//only filter device is GSM Modem
+		intIsModem := m.IsModem()
+		if intIsModem==1{
+			//log
+			log.Println("Open sucessful modem: ",m.Port)
+			return nil
+		}	
+		return errors.New("Device is not GSM modem")	
+	}
+	log.Println("Open modem err: ",err)
+	return err
+}
+
+
+
 func (m *GSMModem) SendSMS(mobile string, message string) int {
-	log.Println("--- SendSMS ", mobile, message)
+	log.Println("--- SendSMS ", mobile, message, m.Port)
 
 	// Put Modem in SMS Text Mode
 	m.SendCommand("AT+CMGF=1\r", false)
@@ -75,7 +104,25 @@ func (m *GSMModem) SendSMS(mobile string, message string) int {
 
 	// EOM CTRL-Z = 26
 	status := m.SendCommand(message+string(26), true)
-	log.Println("--- SendSMS Status ==== ", status)
+	//log.Println("--- SendSMS Status ==== ", status)
+	if strings.HasSuffix(status, "OK\r\n") {
+		return SMSProcessed
+	} else if strings.HasSuffix(status, "ERROR\r\n") {
+		return SMSError
+	} else {
+		return SMSPending
+	}
+
+}
+
+
+func (m *GSMModem) ReadSMS() int {
+	// Put Modem in SMS Text Mode
+	m.SendCommand("AT+CMGF=1\r", false)
+	//status := m.SendCommand("AT+CMGL=\"ALL\"\r", true)
+	status := m.SendCommand("AT+CMGR=0\r", true)
+	
+	log.Println("--- ReadSMS Status ==== ", status)
 	if strings.HasSuffix(status, "OK\r\n") {
 		return SMSProcessed
 	} else if strings.HasSuffix(status, "ERROR\r\n") {
@@ -90,50 +137,40 @@ func (m *GSMModem) ProcessMessages() {
 	defer func() {
 		log.Println("--- deferring ProcessMessage")
 		
-	}()
-
-	//log.Println("--- ProcessMessage")
+	}()	
 	for {
+		//waitng message comming
 		message := <-messages
-		log.Println("processing: ", message.Phone, message.Body)
-
 		_ = m.SendSMS(message.Phone, message.Body)
-		// message.Device = m.Devid
-		// message.Retries++
-		// //updateMessageStatus(message)
-		// log.Println("processing updateSMSSent:  ", message.Id)
-
-		// //save status sent sms
-		// if message.Status == SMSProcessed{
-		// 	updateSMSSent(message.Id)
-		// }
-
-		// if message.Status != SMSProcessed && message.Retries < SMSRetryLimit {
-		// 	// push message back to queue until either it is sent successfully or
-		// 	// retry count is reached
-		// 	// I can't push it to channel directly. Doing so may cause the sms to be in
-		// 	// the queue twice. I don't want that
-		// 	updateSMSRetries(message.Id)
-		// }
-		time.Sleep(3000 * time.Microsecond)
 	}
 }
 
 func InitWorker(modems []*GSMModem, bufferSize, bufferLow, loaderTimeout, countOut, loaderLongTimeout int) {
-	log.Println("---Go inside init worker here")
-	
 	messages = make(chan SMSWorker, bufferSize)
-	log.Println("---receive message from channel")
 	for i := 0; i < len(modems); i++ {
 		modem := modems[i]
-		log.Println("==== try to connect device",modem)
+		//log.Println("==== try to connect device",modem)
 		err := modem.Connect()
 		if err != nil {
-			log.Println("InitWorker: error connecting", modem.Devid, err)
 			continue
 		}
-		go modem.ProcessMessages()
+		//Add to avaliableModem
+		avaliableModem=append(avaliableModem,modem)
+		//run go routine in background to recieve sms		
+		go modem.ProcessMessages()		
+	}	
+}
+
+func GetAvaliableNameModem() []string{
+	var modemNames []string
+	for i:=0 ; i<len(avaliableModem); i++ {
+		log.Println("avaliableModem::",avaliableModem[i])
+		modemNames =append(modemNames, avaliableModem[i].Port)
 	}
+	return modemNames
+}
+func GetAvaliableModem() []*GSMModem{
+	return avaliableModem
 }
 
 func AddSMS(phone string,body string ) {		

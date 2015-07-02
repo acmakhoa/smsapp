@@ -3,11 +3,11 @@ package api
 import (
 	"fmt"
   	"log"
-  	"time"
+  	//"time"
   	"net/http"	
-  	"strconv"
+  	//"strconv"
   	"github.com/gorilla/mux"
-  	"github.com/robfig/cron"
+  	//"github.com/robfig/cron"
   	"github.com/acmakhoa/smsapp/db"
   	"github.com/acmakhoa/smsapp/worker"
  )
@@ -80,20 +80,10 @@ func (_ *ListSmsAPI) SendHandler(w http.ResponseWriter, r *http.Request) {
 	
 	modelSms:=db.SMS{}	
 	smses:=modelSms.FindByList(params["id"])
-	c := cron.New()		
+	queue:=SmsQueueAPI{}
 	for i:=0;i<len(smses);i++{
-		log.Println("send message to phone:",smses[i].Id,l.Body)
-
-		//run in background
-		c.AddFunc("*/"+strconv.Itoa((i+1)*2)+" * * * * *", func() { 
-			//worker.AddSMS(smses[i].Id,l.Body)
-			fmt.Println("Every hour on the half hour") 
-		})
-
-		time.Sleep(5)
-		
+		//log.Println("send message to phone:",smses[i].Id,l.Body)
+		go queue.Push(l,smses[i],i)
 	}
-	c.Start()
-	
 	Response(w,map[string]interface{}{})
 }

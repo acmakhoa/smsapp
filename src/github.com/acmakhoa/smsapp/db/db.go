@@ -12,8 +12,7 @@ func InitDB( dbname string) (*bolt.DB, error) {
         log.Fatal(err)
     }    
     Ddb = db
-    Ddb.Update(func(tx *bolt.Tx) error {
-	    	log.Println("--- Create Bucket SMS")
+    Ddb.Update(func(tx *bolt.Tx) error {	    	
 		    b := tx.Bucket([]byte("SMS"))		
 		    if b==nil{
 		    	//create bucket `SMS`

@@ -45,7 +45,7 @@ func (list *List)FindById(Id string) List{
 }
 
 func (list *List)FindAll() []List{	
- 	var listSMS []List;
+ 	var listSMS []List
  	chanLists := make(chan List)
     Ddb.View(func(tx *bolt.Tx) error {
 	    b := tx.Bucket([]byte("List"))	

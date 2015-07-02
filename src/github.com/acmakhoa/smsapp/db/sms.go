@@ -15,7 +15,6 @@ type SMS struct{
 	Created time.Time	
 }
 
-
 func (sms *SMS) Save() error{		
 	    Ddb.Update(func(tx *bolt.Tx) error {
 	    	log.Println("--- Save SMS")

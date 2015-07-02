@@ -73,11 +73,11 @@ func sendHandler(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, nil)
 }
 
-func importCsvHandler(w http.ResponseWriter, r *http.Request) {
-	log.Println("--- importCsv")	
-	t1:=template.New("import_csv.html")
+func settingHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("--- settingHandler")
+	t1:=template.New("setting.html")
 	t1.Delims("{{%", "%}}")
-	t, _ := t1.ParseFiles("./templates/import_csv.html")
+	t, _ := t1.ParseFiles("./templates/setting.html")
 	t, _ =t.ParseFiles("./templates/header.html","./templates/footer.html")
 	t.Execute(w, nil)
 }
@@ -100,8 +100,8 @@ func InitServer(host string, port string) error {
 	r.HandleFunc("/", listHandler)	
 	r.HandleFunc("/sms", indexHandler)		
 	r.HandleFunc(`/list/{id:[a-zA-Z0-9=\-\/\.\_]+}`, listHandler)	
-	
 	r.Methods("GET").Path("/send").HandlerFunc(sendHandler)	
+	r.Methods("GET").Path("/setting").HandlerFunc(settingHandler)	
 	
 
 	// handle static files
@@ -129,13 +129,25 @@ func InitServer(host string, port string) error {
 	Api.Methods("GET").Path("/sms/reset").HandlerFunc(apisms.ResetSMSHandler)
 	Api.Methods("GET").Path("/sms/find").HandlerFunc(apisms.FindSMSHandler)
 
-	 //api.Methods("GET").Path("/sms/delete/{id:[0-9]+}").HandlerFunc(web.deleteSMSHandler)
+	apismsqueue:=  api.SmsQueueAPI{}
+	Api.Methods("GET").Path("/smsqueue/find").HandlerFunc(apismsqueue.FindAllHandler)
+	Api.Methods("GET").Path("/smsqueue/reset").HandlerFunc(apismsqueue.ResetQueueHandler)
+	 //api.Methods("GET").Path("/sms/delete/{id:[0-9]+}").HandlerFunc(web.deleteSMSHandler)	
 	// api.Methods("GET").Path("/sms/send").HandlerFunc(web.cronJobSMSHandler)
 	//api.Methods("GET").Path("/sms/resend/{id:[0-9]+}").HandlerFunc(web.resendSMSHandler)
 	//Api.Methods("POST").Path("/sms/").HandlerFunc(api.SendSMSHandler)
+
+	apidevice :=api.DeviceAPI{}
+	Api.Methods("GET").Path("/device/rescan").HandlerFunc(apidevice.ReScanHandler)
+	Api.Methods("GET").Path("/device/list").HandlerFunc(apidevice.ListHandler)
+	Api.Methods("POST").Path("/device/select").HandlerFunc(apidevice.SelectHandler)
 	
 
+	//Init crontab with message file
+	//apismsqueue.InitCronTab(MessagesFile)
+
 	http.Handle("/", r)
+
 
 	bind := fmt.Sprintf("%s:%s", host, port)
 	log.Println("listening on: ", bind)

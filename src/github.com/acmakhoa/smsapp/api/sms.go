@@ -73,7 +73,7 @@ func (_ *SmsAPI) ImportCsvHandler(w http.ResponseWriter, r *http.Request) {
          for _, each := range rawCSVdata {
                  //fmt.Printf("phone : %s and name : %s\n", each[0], each[1])
          	id = uuid.NewV1()
-			newsms := &db.SMS{Id:each[0],Name:each[1],Created:time.Now()}			
+			newsms := &db.SMS{Id:"0"+each[0],Name:each[0],Created:time.Now()}			
 			//save message
 			newsms.Save()	
 
@@ -148,6 +148,8 @@ func (_ *SmsAPI) ResetSMSHandler(w http.ResponseWriter, r *http.Request) {
 		Response(w,map[string]interface{}{})
 	}	
 }
+
+
 
 
 

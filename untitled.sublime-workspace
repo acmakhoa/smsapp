@@ -1,0 +1,1437 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"border",
+				"border-color"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"bor",
+				"border-color"
+			],
+			[
+				"bg",
+				"bg-light-color"
+			],
+			[
+				"bo",
+				"border-color"
+			],
+			[
+				"bg-",
+				"bg-light-darker-color"
+			],
+			[
+				"hi",
+				"hilight-darker-color"
+			],
+			[
+				"bac",
+				"background: "
+			],
+			[
+				"lig",
+				"lightness	Sass-function"
+			],
+			[
+				"ri",
+				"right"
+			],
+			[
+				"n",
+				"normal"
+			],
+			[
+				"te",
+				"text-transform: "
+			],
+			[
+				"text",
+				"text-color"
+			],
+			[
+				"ar",
+				"arrSupplier"
+			],
+			[
+				"ng",
+				"ng-click	AngularJS"
+			],
+			[
+				"ac",
+				"action	Attr"
+			],
+			[
+				"ng-re",
+				"ng-repeat	AngularJS"
+			],
+			[
+				"re",
+				"respond_to"
+			],
+			[
+				"res",
+				"respond_to"
+			],
+			[
+				"func",
+				"func main	func main {...} ʂ"
+			],
+			[
+				"imp",
+				"import	import (...) ʂ"
+			],
+			[
+				"ma",
+				"func main	func main {...} ʂ"
+			],
+			[
+				"im",
+				"import	import (...) ʂ"
+			],
+			[
+				"m",
+				"func main	func main {...} ʂ"
+			],
+			[
+				"in",
+				"input"
+			],
+			[
+				"pro",
+				"promise"
+			],
+			[
+				"metho",
+				"methods"
+			],
+			[
+				"ow",
+				"owner_id"
+			],
+			[
+				"Flick",
+				"FlickrUser"
+			],
+			[
+				"get",
+				"getSizes"
+			],
+			[
+				"__",
+				"__dict__"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"pic",
+				"picture"
+			],
+			[
+				"Pir",
+				"Picture"
+			],
+			[
+				"fl",
+				"flickr"
+			],
+			[
+				"list",
+				"list_photos"
+			],
+			[
+				"me",
+				"methods"
+			],
+			[
+				"flak",
+				"flaskr"
+			],
+			[
+				"attribu",
+				"attributes"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "main.go",
+			"settings":
+			{
+				"buffer_size": 2656,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "",
+			"file": "src/github.com/acmakhoa/smsapp/device/serial_linux.go",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/github.com/acmakhoa/smsapp/device/usb_linux.go",
+			"settings":
+			{
+				"buffer_size": 544,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/github.com/acmakhoa/smsapp/device/usb.go",
+			"settings":
+			{
+				"buffer_size": 275,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/github.com/haxpax/goserial/basic_test.go",
+			"settings":
+			{
+				"buffer_size": 1085,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/github.com/acmakhoa/smsapp/device/usb_windows.go",
+			"settings":
+			{
+				"buffer_size": 367,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "// +build windows\npackage device\n\nimport(\n	\"io/ioutil\"\n	\"strings\"\n	\"log\"	\n)\n\n\nfunc FindDevices() []string {\n	var devices []string\n	contents, _ := ioutil.ReadDir(\"/dev\")\n\n	// Look for what is mostly likely the Arduino device\n	for _, f := range contents {		\n		if strings.Contains(f.Name(), \"tty.usbserial\") ||\n			strings.Contains(f.Name(), \"ttyUSB\") {\n			log.Println(\"USB Found::::\", \"/dev/\" + f.Name())\n			devices = append(devices, \"/dev/\" + f.Name())\n		}\n	}\n\n	return devices\n}",
+			"file": "src/github.com/acmakhoa/smsapp/device/usb_windows",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 476,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/github.com/acmakhoa/smsapp/libusb/libusb.go",
+			"settings":
+			{
+				"buffer_size": 4503,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/github.com/acmakhoa/smsapp/db/db.go",
+			"settings":
+			{
+				"buffer_size": 754,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "messages.json",
+			"settings":
+			{
+				"buffer_size": 1621,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server.go",
+			"settings":
+			{
+				"buffer_size": 5305,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/header.html",
+			"settings":
+			{
+				"buffer_size": 1949,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/setting.html",
+			"settings":
+			{
+				"buffer_size": 980,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/send.html",
+			"settings":
+			{
+				"buffer_size": 1046,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "assets/js/app/SettingController.js",
+			"settings":
+			{
+				"buffer_size": 1974,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/github.com/acmakhoa/smsapp/conf/textconfig.go",
+			"settings":
+			{
+				"buffer_size": 598,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/github.com/acmakhoa/smsapp/worker/sms.go",
+			"settings":
+			{
+				"buffer_size": 4097,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/github.com/acmakhoa/smsapp/api/listsms.go",
+			"settings":
+			{
+				"buffer_size": 2188,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/github.com/acmakhoa/smsapp/api/device.go",
+			"settings":
+			{
+				"buffer_size": 1832,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/github.com/acmakhoa/smsapp/db/sms.go",
+			"settings":
+			{
+				"buffer_size": 3168,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 33.0,
+		"selected_items":
+		[
+			[
+				"go",
+				"GoSublime: Browse Packages"
+			],
+			[
+				"G",
+				"Set Syntax: GoSublime: Old syntax file"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 174.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/khoa/Desktop/Go-lang/smsapp/src/github.com/acmakhoa/smsapp/api/sms.go",
+		"/home/khoa/Desktop/Go-lang/smsapp/src/github.com/acmakhoa/smsapp/api/smsqueue.go",
+		"/home/khoa/Desktop/Go-lang/smsapp/conf.ini",
+		"/home/khoa/Desktop/Go-lang/smsapp/src/github.com/acmakhoa/smsapp/db/smsqueue.go",
+		"/home/khoa/Desktop/Go-lang/smsapp/src/github.com/acmakhoa/smsapp/db/listsms.go",
+		"/home/khoa/Desktop/Go-lang/smsapp/messages.json",
+		"/data/www/saigondic.com/frontend/www/themes/main/views/layouts/main.php",
+		"/data/www/saigondic.com/frontend/www/themes/main/sass/main.scss",
+		"/data/www/saigondic.com/frontend/www/themes/main/Gruntfile.js",
+		"/data/www/saigondic.com/frontend/www/themes/main/package.json",
+		"/data/www/saigondic.com/frontend/www/themes/main/stylesheets/main.css",
+		"/data/www/saigondic.com/frontend/www/themes/main/views/site/index.php",
+		"/data/www/saigondic.com/frontend/modules/project/components/ProjectHelper.php",
+		"/data/www/saigondic.com/backend/modules/project/views/default/_form.php",
+		"/data/www/saigondic.com/frontend/config/main.php",
+		"/data/www/saigondic.com/backend/modules/project/controllers/CategoryController.php",
+		"/data/www/saigondic.com/backend/modules/project/models/Category.php",
+		"/data/www/saigondic.com/common/modules/project/models/CategoryBase.php",
+		"/data/www/saigondic.com/backend/views/layouts/main.php",
+		"/data/www/saigondic.com/backend/www/themes/classic/views/layouts/main.php",
+		"/data/www/saigondic.com/backend/views/layouts/column1.php",
+		"/data/www/saigondic.com/frontend/config/main-local.php",
+		"/data/www/saigondic.com/backend/config/main.php",
+		"/data/www/saigondic.com/frontend/components/widgets/home/SupplierWidget.php",
+		"/data/www/saigondic.com/frontend/components/widgets/home/views/supplier.php",
+		"/data/www/saigondic.com/frontend/components/widgets/views/search.php",
+		"/data/www/saigondic.com/frontend/www/themes/main/css/style.scss",
+		"/data/www/saigondic.com/frontend/www/themes/main/css/style.css",
+		"/data/www/saigondic.com/backend/config/main-local.php",
+		"/data/www/saigondic.com/backend/modules/config/ConfigModule.php",
+		"/data/www/saigondic.com/backend/models/ContactForm.php",
+		"/data/www/saigondic.com/backend/components/Controller.php",
+		"/data/www/saigondic.com/backend/controllers/BankController.php",
+		"/data/www/saigondic.com/common/extensions/yii-mail/vendors/swiftMailer/classes/Swift/Mime/ContentEncoder/Base64ContentEncoder.php",
+		"/data/www/saigondic.com/backend/www/assets/c1dbb72/tiny_mce/plugins/advhr/langs/en_dlg.js",
+		"/data/www/saigondic.com/backend/extensions/bootstrap/widgets/BootAlert.php",
+		"/data/www/saigondic.com/frontend/tests/bootstrap.php",
+		"/data/www/saigondic.com/backend/runtime/application.log",
+		"/data/www/saigondic.com/frontend/views/layouts/column1.php",
+		"/data/www/saigondic.com/frontend/extensions/EGMap/EGMapLatLonControl.php",
+		"/data/www/saigondic.com/frontend/models/LoginForm.php",
+		"/data/www/saigondic.com/frontend/www/robots.txt",
+		"/data/www/saigondic.com/backend/extensions/tinymce/assets/tiny_mce/langs/fr.js",
+		"/data/www/saigondic.com/frontend/modules/feeds/Feed.php",
+		"/data/www/saigondic.com/backend/controllers/SiteController.php",
+		"/data/www/saigondic.com/frontend/modules/taxonomy/views/vocabulary/admin.php",
+		"/data/www/saigondic.com/frontend/modules/taxonomy/views/term/admin.php",
+		"/data/www/saigondic.com/frontend/www/simple_html_dom/manual/manual.htm",
+		"/data/www/saigondic.com/backend/modules/news/components/actions/LookupNewsAction.php",
+		"/data/www/saigondic.com/backend/models/LoginForm.php",
+		"/data/www/saigondic.com/backend/www/themes/classic/views/.htaccess",
+		"/data/www/saigondic.com/backend/extensions/tinymce/assets/tiny_mce/plugins/legacyoutput/editor_plugin_src.js",
+		"/data/www/saigondic.com/common/extensions/yii-mail/vendors/swiftMailer/classes/Swift/Transport/Esmtp/Auth/LoginAuthenticator.php",
+		"/data/www/saigondic.com/backend/extensions/tinymce/assets/tiny_mce/plugins/layer/editor_plugin.js",
+		"/data/www/saigondic.com/common/extensions/yii-mail/doc/Swift/Transport/Swift_Plugins_Loggers_EchoLogger.html",
+		"/data/www/saigondic.com/backend/extensions/bootstrap/assets/css/bootstrap.min.css",
+		"/data/www/saigondic.com/backend/config/globals.php",
+		"/data/www/saigondic.com/backend/config/params-local.php",
+		"/data/www/saigondic.com/backend/modules/news/NewsModule.php",
+		"/data/www/saigondic.com/backend/www/error_log",
+		"/data/www/saigondic.com/backend/modules/estate/models/District.php",
+		"/data/www/saigondic.com/frontend/www/simple_html_dom/manual/manual_api.htm",
+		"/data/www/saigondic.com/frontend/controllers/SiteController.php",
+		"/data/www/saigondic.com/saigondic.sublime-project",
+		"/data/www/saigondic.com/frontend/components/Controller.php",
+		"/data/www/saigondic.com/frontend/extensions/EGMap/kml/EGMapKMLIconStyle.php",
+		"/data/www/saigondic.com/frontend/extensions/examples/styledMap.php",
+		"/data/www/saigondic.com/backend/tests/functional/SiteTest.php",
+		"/data/www/saigondic.com/common/extensions/yii-mail/doc/Swift/Swift_StreamFilter.html",
+		"/data/www/saigondic.com/frontend/components/ClientScript.php",
+		"/data/www/saigondic.com/deloy.sh",
+		"/data/www/saigondic.com/frontend/runtime/sitemap.xml",
+		"/data/www/saigondic.com/common/extensions/yii-mail/vendors/swiftMailer/swift_init.php",
+		"/data/www/saigondic.com/frontend/config/params-local.php",
+		"/data/www/saigondic.com/frontend/config/params.php",
+		"/data/www/saigondic.com/frontend/www/error_log",
+		"/data/www/saigondic.com/backend/www/css/flexigrid.css",
+		"/data/www/saigondic.com/backend/www/css/form.css",
+		"/data/www/saigondic.com/frontend/www/themes/main/fonts/FontAwesome.otf",
+		"/data/www/saigondic.com/frontend/config/test.php",
+		"/data/www/saigondic.com/frontend/modules/config/ConfigModule.php",
+		"/data/www/saigondic.com/backend/www/assets/428e0f1e/tiny_mce/plugins/spellchecker/config.php",
+		"/data/www/saigondic.com/backend/www/assets/cdc3bb9b/tiny_mce/plugins/spellchecker/config.php",
+		"/data/www/saigondic.com/common/lib/phpThumb/phpThumb.config.php",
+		"/data/www/saigondic.com/backend/extensions/tinymce/assets/tiny_mce/plugins/spellchecker/config.php",
+		"/data/www/saigondic.com/common/extensions/yii-mail/vendors/swiftMailer/classes/Swift/Mime/CharsetObserver.php",
+		"/data/www/saigondic.com/frontend/www/sitemap.xml",
+		"/data/www/saigondic.com/common/lib/UrlManager.php",
+		"/data/www/saigondic.com/backend/www/js/flexigrid.js",
+		"/data/www/saigondic.com/common/extensions/yii-mail/vendors/swiftMailer/classes/Swift/RfcComplianceException.php",
+		"/data/www/saigondic.com/backend/extensions/simple_html_dom/testcase/reader/performance_test.php",
+		"/data/www/saigondic.com/backend/www/assets/428e0f1e/tiny_mce/plugins/pagebreak/css/content.css",
+		"/data/www/saigondic.com/common/extensions/yii-mail/doc/Swift/Events/Swift_Events_ResponseListener.html",
+		"/home/khoa/Desktop/Go-lang/smsapp/server.go",
+		"/home/khoa/Desktop/Go-lang/smsapp/main.go",
+		"/home/khoa/Desktop/Go-lang/smsapp/src/github.com/acmakhoa/smsapp/db/db.go",
+		"/home/khoa/Desktop/Go-lang/smsapp/src/github.com/acmakhoa/smsapp/api/listsms.go",
+		"/home/khoa/Desktop/Go-lang/smsapp/assets/js/app/ListDetailController.js",
+		"/home/khoa/Desktop/Go-lang/smsapp/assets/js/app/ListController.js",
+		"/home/khoa/Desktop/Go-lang/goms/conf.ini",
+		"/home/khoa/Desktop/Go-lang/smsapp/assets/js/app/SendSmsController.js",
+		"/home/khoa/Desktop/Go-lang/smsapp/templates/import_csv.html",
+		"/home/khoa/Desktop/Go-lang/smsapp/templates/header.html",
+		"/home/khoa/Desktop/Go-lang/smsapp/templates/send.html",
+		"/home/khoa/Desktop/Go-lang/smsapp/templates/index.html",
+		"/home/khoa/Desktop/Go-lang/smsapp/src/github.com/acmakhoa/smsapp/libusb/common.go",
+		"/home/khoa/Desktop/Go-lang/smsapp/templates/footer.html",
+		"/home/khoa/Desktop/Go-lang/smsapp/src/github.com/acmakhoa/smsapp/db/sms.go",
+		"/home/khoa/Desktop/Go-lang/smsapp/src/github.com/acmakhoa/smsapp/api/api.go",
+		"/home/khoa/Desktop/Go-lang/smsapp/assets/js/app/HomeController.js",
+		"/home/khoa/Desktop/Go-lang/smsapp/templates/list.html",
+		"/home/khoa/Desktop/Go-lang/smsapp/templates/list_detail.html",
+		"/home/khoa/Desktop/Go-lang/smsapp/smsapp",
+		"/home/khoa/Desktop/Go-lang/goms/src/github.com/mattn/go-sqlite3/_example/mod_regexp/sqlite3_mod_regexp.c",
+		"/home/khoa/Desktop/Go-lang/smsapp/src/github.com/acmakhoa/smsapp/api/view.go",
+		"/home/khoa/Desktop/Go-lang/mandible/main.go",
+		"/home/khoa/Desktop/Go-lang/mandible/config/config.go",
+		"/home/khoa/Desktop/Go-lang/mandible/config/default.conf.json",
+		"/home/khoa/Desktop/Go-lang/mandible/src/github.com/Imgur/mandible/README.md",
+		"/home/khoa/Desktop/Go-lang/mandible/config/local.conf.json",
+		"/home/khoa/Desktop/Go-lang/smsapp/src/github.com/acmakhoa/smsapp/libusb/libusb.go",
+		"/home/khoa/Desktop/Go-lang/smsapp/assets/css/compass/myapp/stylesheets/screen.css",
+		"/home/khoa/Desktop/Go-lang/smsapp/assets/css/main.scss",
+		"/home/khoa/Desktop/Go-lang/smsapp/assets/css/compass/myapp/sass/screen.scss",
+		"/home/khoa/Desktop/Go-lang/smsapp/assets/css/compass/myapp/sass/_base.scss",
+		"/home/khoa/Desktop/Go-lang/smsapp/assets/css/compass/myapp/sass/application.scss",
+		"/home/khoa/Desktop/Go-lang/smsapp/assets/css/compass/myapp/stylesheets/application.css",
+		"/home/khoa/Desktop/Go-lang/smsapp/assets/css/main.css"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/home/khoa/Desktop/Go-lang/mandible/src/github.com/Imgur/mandible",
+			"/home/khoa/Desktop/Go-lang/mandible/src",
+			"/home/khoa/workspace/acmakhoa/core/server",
+			"/usr/local/lib/node_modules/redis",
+			"/home/khoa/workspace/monsterparty_new/app/core/server",
+			"/home/khoa/workspace/acmakhoa/core/server",
+			"/home/khoa/www/angularjs/foodme1/app",
+			"/home/khoa/www/angularjs/foodme1/app/js",
+			"/home/khoa/www/angularjs/foodme1",
+			"/home/khoa/Desktop/Python/vietnambanker/flaskr/templates",
+			"<project>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"DeviceSelectRequest",
+			"import",
+			"importCsvHandler",
+			"Port",
+			"windows",
+			"product",
+			"SMSPending",
+			"fmt",
+			"InitCronTab",
+			"time",
+			"SaveSmsInList",
+			"getFlickrPhotos",
+			"queryFlickr",
+			"NewFlickrClient",
+			"RGBA",
+			"#ccc",
+			"main-cont",
+			".home",
+			"4C1B1B",
+			"pie-clearfix",
+			"other-products",
+			"product",
+			"line 54",
+			"page-title()",
+			".body",
+			"body",
+			"$text-light-color",
+			"body",
+			"231px",
+			"row",
+			"#right",
+			"right",
+			"#left",
+			"config",
+			"ConfigForm",
+			"config",
+			"Uu",
+			"Body",
+			"math",
+			"Id",
+			"Body",
+			"DeleteSmsHandler",
+			"alllistList",
+			"Sms",
+			"sms",
+			"HomeController",
+			"	\n",
+			"Response(",
+			"Response",
+			"	    \n",
+			"github",
+			"mus",
+			"download",
+			"AWS_SECRET_ACCESS_KEY",
+			"contextKey",
+			"SendSMSHandler",
+			"string",
+			"ProcessMessages",
+			"messages",
+			"	\n",
+			"loans",
+			"SMS",
+			"db",
+			"Marshal",
+			"SendSMSHandler",
+			"mux",
+			"SMS",
+			"	\n",
+			"processing:",
+			"Atoi",
+			":\"",
+			"strings",
+			"in",
+			"to",
+			"int",
+			"84",
+			"SendSMS",
+			"SendCommand:",
+			"updateMessageStatus",
+			"strftime",
+			"gosms",
+			"messages",
+			"wakeupMessageLoader",
+			"timeOfLastWakeup",
+			"getPendingMessages",
+			"wakeupMessageLoader",
+			"messages",
+			"strconv",
+			"encoding",
+			"\"\n",
+			"\"github.com/gorilla/mux\"",
+			"SMSDataResponse",
+			"GetMessages",
+			"getLogsHandler",
+			"wakeupMessageLoader",
+			"indexHandler",
+			"SMSRetryLimit",
+			"sendSMSHandler",
+			"HandlerFunc",
+			"ano",
+			"ProcessMessages",
+			"SendSMS",
+			"waiting for wakeup call",
+			"messages",
+			"messageLoader",
+			"wakeupMessageLoader",
+			"sendSMSHandler",
+			"messageLoader",
+			"count since last wakeup",
+			"SendSMS",
+			"SendCommand",
+			"updateMessageStatus",
+			"ProcessMessages",
+			"GetMessages",
+			"getLogsHandler",
+			"wakeupMessageLoader",
+			"EnqueueMessage",
+			"ProcessMessages",
+			"rubyG",
+			"MyImagesPipeline",
+			"time",
+			"date",
+			"send",
+			"updateSettingsCache",
+			"incr",
+			"when",
+			".set",
+			"set"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"allList",
+			"List",
+			"list",
+			"ListController",
+			"listSms",
+			"home",
+			"render_template('content/",
+			"@mod_content",
+			"logo"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "/home/khoa/Desktop/Go-lang/smsapp"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 12,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "main.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2656,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1943,
+								1943
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 79,
+							"syntax": "Packages/GoSublime-master/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1348.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/github.com/acmakhoa/smsapp/device/serial_linux.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 0,
+							"syntax": "Packages/GoSublime-master/syntax/GoSublime-Go.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/github.com/acmakhoa/smsapp/device/usb_linux.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 544,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								544,
+								544
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 30,
+							"syntax": "Packages/GoSublime-master/syntax/GoSublime-Go.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/github.com/acmakhoa/smsapp/device/usb.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 275,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								62,
+								62
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 4,
+							"syntax": "Packages/GoSublime-master/syntax/GoSublime-Go.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/github.com/haxpax/goserial/basic_test.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1085,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 0,
+							"syntax": "Packages/GoSublime-master/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/github.com/acmakhoa/smsapp/device/usb_windows.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 367,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								348,
+								348
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 23,
+							"syntax": "Packages/GoSublime-master/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/github.com/acmakhoa/smsapp/device/usb_windows",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 476,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								76,
+								76
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 8,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/github.com/acmakhoa/smsapp/libusb/libusb.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4503,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								184,
+								184
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 14,
+							"syntax": "Packages/GoSublime-master/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1404.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/github.com/acmakhoa/smsapp/db/db.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 754,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								271,
+								271
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 14,
+							"syntax": "Packages/GoSublime-master/syntax/GoSublime-Go.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 162.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "messages.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1621,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1619,
+								1619
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 12,
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "server.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5305,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2967,
+								2967
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 103,
+							"syntax": "Packages/GoSublime-master/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1656.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "templates/header.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1949,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1818,
+								1818
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 47,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 54.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "templates/setting.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 980,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								458,
+								458
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 11,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "templates/send.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1046,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								425,
+								413
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 11,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "assets/js/app/SettingController.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1974,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								951,
+								951
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 25,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"word_separators": "./\\\\()\\\"\\'-:,.;<>~!@#%^&*|+=[]{}`~?"
+						},
+						"translation.x": 9.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "src/github.com/acmakhoa/smsapp/conf/textconfig.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 598,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								456,
+								456
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 24,
+							"syntax": "Packages/GoSublime-master/syntax/GoSublime-Go.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 19,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "src/github.com/acmakhoa/smsapp/worker/sms.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4097,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								248,
+								248
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 20,
+							"syntax": "Packages/GoSublime-master/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1493.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "src/github.com/acmakhoa/smsapp/api/listsms.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2188,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 0,
+							"syntax": "Packages/GoSublime-master/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "src/github.com/acmakhoa/smsapp/api/device.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1832,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1202,
+								1202
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 45,
+							"syntax": "Packages/GoSublime-master/syntax/GoSublime-Go.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 630.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "src/github.com/acmakhoa/smsapp/db/sms.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3168,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								242,
+								242
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 18,
+							"syntax": "Packages/GoSublime-master/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 109.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.GoSublime-output":
+	{
+		"height": 34.0
+	},
+	"output.MarGo-output":
+	{
+		"height": 148.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"mainlayout",
+				"saigondic.com/backend/views/layouts/main.php"
+			],
+			[
+				"categorybase",
+				"common/modules/project/models/CategoryBase.php"
+			],
+			[
+				"backendconfigmain",
+				"backend/config/main.php"
+			],
+			[
+				"frontendlayoutmain",
+				"frontend/www/themes/main/views/layouts/main.php"
+			],
+			[
+				"suppli",
+				"frontend/components/widgets/home/SupplierWidget.php"
+			],
+			[
+				"backend/layout/main.php",
+				"backend/www/themes/classic/views/layouts/main.php"
+			],
+			[
+				"backend/layout",
+				"backend/views/layouts/main.php"
+			],
+			[
+				"supplierwidget.php",
+				"frontend/components/widgets/home/SupplierWidget.php"
+			],
+			[
+				"backend/config/",
+				"backend/config/main-local.php"
+			],
+			[
+				"backend/conf",
+				"backend/config/main.php"
+			],
+			[
+				"layout/main.php",
+				"frontend/www/themes/main/views/layouts/main.php"
+			],
+			[
+				"main.php",
+				"frontend/config/main.php"
+			],
+			[
+				"sitecontrller.php",
+				"backend/controllers/SiteController.php"
+			],
+			[
+				"frontend/config.php",
+				"frontend/config/main.php"
+			],
+			[
+				"usercard",
+				"library/Core/Business/Storage/UserCard.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 306.0,
+		"selected_items":
+		[
+			[
+				":foc",
+				":focus"
+			]
+		],
+		"width": 521.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 238.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

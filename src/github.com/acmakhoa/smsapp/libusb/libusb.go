@@ -95,6 +95,10 @@ func Open(vid, pid int) *Device {
 			if int(dev.descriptor.idVendor) == vid &&
 				int(dev.descriptor.idProduct) == pid {
 				h := C.usb_open(dev)
+
+				//fmt log
+				pnumber := C.usb_get_port_numbers(dev)
+				fmt.Println("libusb_get_port_numbers:",pnumber)
 				rdev := &Device{
 					&Info{
 						C.GoString(&bus.dirname[0]),
